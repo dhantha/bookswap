@@ -14,6 +14,10 @@
       this.val  = _val
     }
 
+    // Launch general GET request
+    // input:  endpoint (string), callback (function(arg)), argObjs...
+    // output: none
+    // side-effect: launches asynchronous GET request
     function launchGetReq(){
       if (arguments.length < 2)
         return;
@@ -91,9 +95,9 @@
     <a href='./profile.html'> My Profile </a> 
     <br><br>
     <!-- input box and button -->
-    <input type='text' id='searchInp_title'  value='Title'/>
-    <input type='text' id='searchInp_author' value='Author'/>
-    <input type='text' id='searchInp_isbn'   value='ISBN'/>
+    <input type='text' id='searchInp_title'  placeholder='Title'/>
+    <input type='text' id='searchInp_author' placeholder='Author'/>
+    <input type='text' id='searchInp_isbn'   placeholder='ISBN'/>
     <br>
     <button id='searchBtn'> Search! </button> <br>
     <a href='./adv-search.html'> Advanced Search </a> 
