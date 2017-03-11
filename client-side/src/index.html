@@ -9,6 +9,10 @@
   <!-- include jQuery -->
   <script src='http://code.jquery.com/jquery-3.1.0.js'></script>
   <script language='javascript'>
+    function txt2html(str){
+      return $('<div/>').text(str).html()
+    }
+
     function getCall(){
       if (arguments.length < 1)
         return;
@@ -23,7 +27,7 @@
           var obj
           obj = arguments[i]
           if (obj.val.length > 0){
-            alert(obj.name)
+            alert(txt2html(obj.val))
             URL += obj.name + '=' + obj.val
             if (i != arguments.length - 1)
               URL += '&'
