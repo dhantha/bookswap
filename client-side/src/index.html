@@ -12,7 +12,7 @@
   <script language='javascript'>
     // dumb
     function updateSearchResults(arg){
-      $('#searchResults').html(arg);
+      $('#resultsDiv').html(arg);
     }
 
     // Parse input fields and launch GET request
@@ -59,10 +59,8 @@
     <button id='searchBtn'> Search! </button> <br>
     <a href='./adv-search.html'> Advanced Search </a> 
 
-    <div id="searchResults"></div>
-
+    <div id="resultsDiv"></div>
     <script>
-      myalert()
       $('#searchInp_title' ).keyup(function(ev){ wrapKeyup(ev) })
       $('#searchInp_author').keyup(function(ev){ wrapKeyup(ev) })
       $('#searchInp_isbn'  ).keyup(function(ev){ wrapKeyup(ev) })
