@@ -6,14 +6,87 @@
 <header>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title> Drexel BookSwap </title>
+  <!-- include jQuery -->
+  <script src="http://code.jquery.com/jquery-3.1.0.js"></script>
+  <script language='javascript'>
+    function getCall(endpoint, arg1, arg2){
+      var anm1
+      var anm2
+      if (endpoint == 'search'){
+        anm1 = 'criteria'
+        anm2 = 'string'
+      }
+      else{
+        console.log('bad endpoint: ' + endpoint)
+        return
+      }
+
+      var URL = 'http://localhost:8080/' 
+              + endpoint 
+              + '?' 
+              + anm1 + '=' + arg1
+              + anm2 + '=' + arg2
+      $.ajax({
+           type: "GET", 
+           url : URL, 
+           success: function(msg){
+                      console.log('getCall success')
+
+                    /* FIXME implement
+                      fillDiv(msg)
+                    */
+                    }, 
+           error: function(jgXHR, textStatus, errorThrown){
+                    console.log('getCall error')
+                    alert("Error: " + textStatus + "\n" + errorThrown)
+                  }
+          })
+    }
+
+    function doSearch(){
+      var searchStr = $('#searchInp').val()
+      var searchCri = $('#searchLst').val()
+
+      getCall('search', searchCri, searchStr)
+    }
+
+    function wrapClick(ev){
+      ev.preventDefault()
+      doSearch()
+    }
+
+    function wrapKeyup(ev){
+      ev.preventDefault()
+      if (ev.keyCode == 13) // enter
+        $("#searchBtn").click()
+    }
+  </script>
+
 </header>
   <body>
     <h3> What is BookSwap? </h3>
+      BookSwap is what you've wanted for a long time now: a centralized
+      spot for swappin' text! Cancel that online order, burn your library
+      card - reading's free from now on.
 
-    <a href="./search.html"> Search for Books </a>
-    <br>
-    <a href="./profile.html"> My Profile </a>
-    <br>
-    <a href="./login.html"> User Login </a>
+    <br><br>
+    <a href="./login.html"> User Login </a> <br>
+    <a href="./profile.html"> My Profile </a> 
+    <br><br>
+    <!-- input box and button -->
+    <input type="text" id="pwordInp" value="Search for Books"/>
+      <br>
+    <select id='searchLst'>
+      <option value="title">  Title  </option>
+      <option value="author"> Author </option>
+      <option value="isbn">   ISBN   </option>
+    </select>
+    <button id='searchBtn'> Search! </button> <br>
+    <a href="./adv-search.html"> Advanced Search </a> 
+
+    <script>
+      $('#searchInp').keyup(function(ev){ wrapKeyup(ev) })
+      $('#searchBtn').click(function(ev){ wrapClick(ev) })
+    </script>
   </body>
 </html>

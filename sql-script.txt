@@ -1,0 +1,49 @@
+create database bookswap;
+
+use bookswap;
+
+create table users (
+	id int not null auto_increment key,
+	name varchar(80),
+	email varchar(80),
+	password varchar(20)
+);
+
+create table books (
+	id int not null auto_increment key,
+	title varchar(255),
+	author varchar(80),
+	owner int not null,
+	isbn varchar(13),
+	status int not null
+);
+
+insert into users
+	(name, email, password)
+	values
+	('Deb','stoddard@drexel.edu','password'),
+	('Ed', 'ecallaghan93@gmail.com', 'password'),
+	('Dhanta', 'dhanthag@gmail.com', 'password'),
+	('Yongchang', 'yc552@drexel.edu', 'password');
+
+insert into books
+	(title, author, owner, status)
+	values
+	('Portraits of Courage', 'George W. Bush', 1, 0),
+	('Hidden Figures', 'Margot Lee Shetterly', 1, 0),
+	('A Dog\'s Purpose', 'W. Bruce Cameron', 1, 1),
+	('The Underground Railroad', 'Colson Whitehead', 1, 1),
+	('Banana Cream Pie Murder', 'Joanne Fluke', 1, 0),
+	('Banana Cream Pie Murder', 'Joanne Fluke', 2, 1),
+	('Dereliction of Duty', 'H. R. McMaster', 2, 0),
+	('Echoes in Death', 'J.D. Robb', 2, 1),
+	('Lincoln in the Bardo', 'George Saunders', 3, 1),
+	('Hidden Figures', 'Margot Lee Shetterly', 3, 0),
+	('The Underground Railroad', 'Colson Whitehead', 3, 1),
+	('A Dog\'s Purpose', 'W. Bruce Cameron', 3, 0),
+	('Lion', 'Saroo Brierley', 4, 1),
+	('Banana Cream Pie Murder', 'Joanne Fluke', 4, 1),
+	('A Dog\'s Purpose', 'W. Bruce Cameron', 4, 1),
+	('Dereliction of Duty', 'H. R. McMaster', 4, 1),
+	('The Zookeeper\'s Wife', 'Diane Ackerman', 4, 1);
+
