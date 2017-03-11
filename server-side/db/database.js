@@ -60,10 +60,10 @@ Database.prototype.getBooks = function(req){
 
 		for(var j=0; j < rows.length; j++){
 			html += "<tr>";
-			html += "<td>" + result[j].title + "</th>";
-			html += "<td>" + result[j].author + "</th>";
-			html += "<td>" + result[j].isbn + "</th>";
-			html += "<td>" + result[j].name + "</th>";
+			html += "<td>" + result[j].title + "</td>";
+			html += "<td>" + result[j].author + "</td>";
+			html += "<td>" + result[j].isbn + "</td>";
+			html += "<td><a href=\"/user?id=" + result[j].ownerid + "\">" + result[j].name + "</a></td>";
 			html += "</tr>";
 		}
 		html += "</table>";
