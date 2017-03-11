@@ -1,0 +1,44 @@
+<!-- BookSwap -->
+
+<!DOCTYPE HTML>
+
+<html>
+<header>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title> Drexel BookSwap </title>
+  <!-- include jQuery -->
+  <script src="http://code.jquery.com/jquery-3.1.0.js"></script>
+
+  <script language='javascript'>
+    function doLogin(){
+      var uname = $('#unameInp').val()
+      var pword = $('#pwordInp').val()
+
+      /* dumb */
+      alert('Logging `' + uname + '\' in with password `' + pword + '\'')
+    }
+
+    function wrapClick(ev){
+      doLogin()
+    }
+
+    function wrapKeyup(ev){
+      doLogin()
+    }
+
+  </script>
+</header>
+  <body>
+    <h3> User Login </h3>
+
+    <!-- input box and button -->
+    <input type="text" name="unameInp" id="unameInp" value="username"/>
+    <input type="text" name="pwordInp" id="pwordInp" value="password"/>
+    <button id="loginBtn"> Login </button>
+    <script>
+      $('#unameInp').keyup(function(ev){ wrapKeyup(ev) })
+      $('#pwordInp').keyup(function(ev){ wrapKeyup(ev) })
+      $('#loginBtn').click(function(ev){ wrapClick(ev) })
+    </script>
+  </body>
+</html>
