@@ -9,6 +9,8 @@
   <!-- include jQuery -->
   <script src='http://code.jquery.com/jquery-3.1.0.js'></script>
   <script language='javascript'>
+    // dumb object to wrap GET arguments
+    // http://host:port/endpoint?name=val
     function argObj(_name, _val){
       this.name = _name
       this.val  = _val
@@ -17,7 +19,7 @@
     // Launch general GET request
     // input:  endpoint (string), callback (function(arg)), argObjs...
     // output: none
-    // side-effect: launches asynchronous GET request
+    // sidefx: launches asynchronous GET request
     function launchGetReq(){
       if (arguments.length < 2)
         return;
@@ -59,23 +61,29 @@
           })
     }
 
+    // dumb
     function dumbCb(arg){
       /* dumb */
     }
 
+    // Parse input fields and launch GET request
+    // input:  none
+    // output: none
+    // sidefx: launches asynchronous GET request
     function doSearch(){
-      var title  = new argObj('title', $('#searchInp_title' ).val())
-      var author = new argObj('author', $('#searchInp_author' ).val())
-      var isbn   = new argObj('isbn', $('#searchInp_isbn' ).val())
-
+      var title  = new argObj('title',  $('#searchInp_title' ).val())
+      var author = new argObj('author', $('#searchInp_author').val())
+      var isbn   = new argObj('isbn',   $('#searchInp_isbn'  ).val())
       launchGetReq('search', dumbCb, title, author, isbn)
     }
 
+    // Wrapper for search clicking
     function wrapClick(ev){
       ev.preventDefault()
       doSearch()
     }
 
+    // Wrapper for search entering
     function wrapKeyup(ev){
       ev.preventDefault()
       if (ev.keyCode == 13) // enter
