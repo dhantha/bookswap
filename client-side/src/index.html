@@ -22,10 +22,12 @@
         for (var i = 1 ; i < arguments.length ; i++){
           var obj
           obj = arguments[i]
-          alert(obj.name)
-          URL += obj.name + '=' + obj.val
-          if (i != arguments.length - 1)
-            URL += '&'
+          if (obj.val.length > 0){
+            alert(obj.name)
+            URL += obj.name + '=' + obj.val
+            if (i != arguments.length - 1)
+              URL += '&'
+          }
         }
       }
       else{
