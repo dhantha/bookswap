@@ -1,27 +1,13 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var database = require("./database");
 
 var app = express();
 app.use(express.static("."));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
-var con = mysql.createConnection({
-	host: 'localhost',
-	user: 'root',
-	password : '',
-	database : 'cs275'
-});
-
-
-conn.connect(function(err){
-	if(err){
-		console.log("Error connecting to the db");
-	}
-	else{
-		console.log("db connection was successful");
-	}
-});
+var sql = new database();
 
 app.use(function(req,res,next){	
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8888');
@@ -33,15 +19,11 @@ app.use(function(req,res,next){
 
 
 app.get('/search',function(req,res){
-	var title = req.query.title;
-	var author = req.query.author;
-	var isbn = req.query.isbn;
-	
-	var query = "select * from book where book.title=" + conn.escape(title) + " or book.author=" + conn.escape(author) + " or book.isbn=" + conn.escape(isbn);
-	conn.query(query,function(err,rows,fileds){
-		// need to populate the table 
-		
+	sql.once('search',function(html){
+		res.send(html);
 	});
+
+	sql.getBooks(req);
 });
 
 app.listen(8080,function(){
