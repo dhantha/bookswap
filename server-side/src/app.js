@@ -1,6 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var database = require("./database");
+var database = require("../db/database");
 
 var app = express();
 app.use(express.static("."));
