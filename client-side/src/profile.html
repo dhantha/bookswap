@@ -9,6 +9,7 @@
     var id = new argObj('User', window.location.search.substring(1))
     launchGetRequest('', updatePage, id)
 
+    // TODO is arg pre-jsonified?
     function updatePage(arg){
       $('#name').html(json.name)
       $('#email').html(json.email)
@@ -18,7 +19,7 @@
   </script>
 </header>
 <body>
-  <a herf='./index.html'> Home Page </a>
+  <a href='./index.html'> Home Page </a>
   <h3> User Profile </h3>
   <div id='name'>Name</div><br>
   <div id='email'>Email</div><br>
