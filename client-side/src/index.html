@@ -4,30 +4,37 @@
 
 <html>
 <header>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
   <title> Drexel BookSwap </title>
   <!-- include jQuery -->
-  <script src="http://code.jquery.com/jquery-3.1.0.js"></script>
+  <script src='http://code.jquery.com/jquery-3.1.0.js'></script>
   <script language='javascript'>
-    function getCall(endpoint, arg1, arg2){
-      var anm1
-      var anm2
+    function getCall(){
+      if (arguments.length < 1)
+        return;
+
+      var URL
+      endpoint = arguments[0]
       if (endpoint == 'search'){
-        anm1 = 'criteria'
-        anm2 = 'string'
+        URL = 'http://localhost:8080/' 
+           + endpoint 
+           + '?' 
+        for (var i = 1 ; i < arguments.length ; i++){
+          var obj
+          obj = arguments[i]
+          alert(obj.name)
+          URL += obj.name + '=' + obj.val
+          if (i != arguments.length - 1)
+            URL += '&'
+        }
       }
       else{
         console.log('bad endpoint: ' + endpoint)
         return
       }
 
-      var URL = 'http://localhost:8080/' 
-              + endpoint 
-              + '?' 
-              + anm1 + '=' + arg1
-              + anm2 + '=' + arg2
       $.ajax({
-           type: "GET", 
+           type: 'GET', 
            url : URL, 
            success: function(msg){
                       console.log('getCall success')
@@ -38,16 +45,22 @@
                     }, 
            error: function(jgXHR, textStatus, errorThrown){
                     console.log('getCall error')
-                    alert("Error: " + textStatus + "\n" + errorThrown)
+                    alert('Error: ' + textStatus + '\n' + errorThrown)
                   }
           })
     }
 
-    function doSearch(){
-      var searchStr = $('#searchInp').val()
-      var searchCri = $('#searchLst').val()
+    function argObj(_name, _val){
+      this.name = _name
+      this.val  = _val
+    }
 
-      getCall('search', searchCri, searchStr)
+    function doSearch(){
+      var title  = new argObj('title', $('#searchInp_title' ).val())
+      var author = new argObj('author', $('#searchInp_author' ).val())
+      var isbn   = new argObj('isbn', $('#searchInp_isbn' ).val())
+
+      getCall('search', title, author, isbn)
     }
 
     function wrapClick(ev){
@@ -58,7 +71,7 @@
     function wrapKeyup(ev){
       ev.preventDefault()
       if (ev.keyCode == 13) // enter
-        $("#searchBtn").click()
+        $('#searchBtn').click()
     }
   </script>
 
@@ -70,22 +83,21 @@
       card - reading's free from now on.
 
     <br><br>
-    <a href="./login.html"> User Login </a> <br>
-    <a href="./profile.html"> My Profile </a> 
+    <a href='./login.html'  > User Login </a> <br>
+    <a href='./profile.html'> My Profile </a> 
     <br><br>
     <!-- input box and button -->
-    <input type="text" id="pwordInp" value="Search for Books"/>
-      <br>
-    <select id='searchLst'>
-      <option value="title">  Title  </option>
-      <option value="author"> Author </option>
-      <option value="isbn">   ISBN   </option>
-    </select>
+    <input type='text' id='searchInp_title'  value='Title'/>
+    <input type='text' id='searchInp_author' value='Author'/>
+    <input type='text' id='searchInp_isbn'   value='ISBN'/>
+    <br>
     <button id='searchBtn'> Search! </button> <br>
-    <a href="./adv-search.html"> Advanced Search </a> 
+    <a href='./adv-search.html'> Advanced Search </a> 
 
     <script>
-      $('#searchInp').keyup(function(ev){ wrapKeyup(ev) })
+      $('#searchInp_title' ).keyup(function(ev){ wrapKeyup(ev) })
+      $('#searchInp_author').keyup(function(ev){ wrapKeyup(ev) })
+      $('#searchInp_isbn'  ).keyup(function(ev){ wrapKeyup(ev) })
       $('#searchBtn').click(function(ev){ wrapClick(ev) })
     </script>
   </body>
