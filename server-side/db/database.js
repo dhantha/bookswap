@@ -63,7 +63,8 @@ Database.prototype.getBooks = function(req){
 			html += "<td>" + result[j].title + "</td>";
 			html += "<td>" + result[j].author + "</td>";
 			html += "<td>" + result[j].isbn + "</td>";
-			html += "<td><a href=\"/user?id=" + result[j].ownerid + "\">" + result[j].name + "</a></td>";
+// 			html += "<td><a href=\"/user?id=" + result[j].ownerid + "\">" + result[j].name + "</a></td>";
+			html += "<td><a href=\"profile.html\">" + result[j].name + "</a></td>";
 			html += "</tr>";
 		}
 		html += "</table>";
