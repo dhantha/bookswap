@@ -9,7 +9,7 @@
   <!-- include jQuery -->
   <script src="http://code.jquery.com/jquery-3.1.0.js"></script>
   <script language='javascript'>
-    function srvCall(endpoint, arg1, arg2){
+    function getCall(endpoint, arg1, arg2){
       var anm1
       var anm2
       if (endpoint == 'search'){
@@ -30,13 +30,14 @@
            type: "GET", 
            url : URL, 
            success: function(msg){
-                      console.log('success')
+                      console.log('getCall success')
+
                     /* FIXME implement
                       fillDiv(msg)
                     */
                     }, 
-           error: function(jgXHR, textStatus,errorThrown){
-                    console.log('error')
+           error: function(jgXHR, textStatus, errorThrown){
+                    console.log('getCall error')
                     alert("Error: " + textStatus + "\n" + errorThrown)
                   }
           })
@@ -46,7 +47,7 @@
       var searchStr = $('#searchInp').val()
       var searchCri = $('#searchLst').val()
 
-      srvCall('search', searchCri, searchStr)
+      getCall('search', searchCri, searchStr)
     }
 
     function wrapClick(ev){
