@@ -9,9 +9,16 @@
   <!-- include jQuery -->
   <script src='http://code.jquery.com/jquery-3.1.0.js'></script>
   <script language='javascript'>
-    function getCall(){
-      if (arguments.length < 1)
+    function argObj(_name, _val){
+      this.name = _name
+      this.val  = _val
+    }
+
+    function launchGetReq(){
+      if (arguments.length < 2)
         return;
+
+      var doDb = arguments[1]
 
       var URL
       endpoint = arguments[0]
@@ -19,7 +26,7 @@
         URL = 'http://localhost:8080/' 
            + endpoint 
            + '?' 
-        for (var i = 1 ; i < arguments.length ; i++){
+        for (var i = 2 ; i < arguments.length ; i++){
           var obj
           obj = arguments[i]
           if (obj.val.length > 0){
@@ -38,22 +45,18 @@
            type: 'GET', 
            url : URL, 
            success: function(msg){
-                      console.log('getCall success')
-
-                    /* FIXME implement
-                      fillDiv(msg)
-                    */
+                      console.log('launchGetReq success')
+                      doCb(msg)
                     }, 
            error: function(jgXHR, textStatus, errorThrown){
-                    console.log('getCall error')
+                    console.log('launchGetReq error')
                     alert('Error: ' + textStatus + '\n' + errorThrown)
                   }
           })
     }
 
-    function argObj(_name, _val){
-      this.name = _name
-      this.val  = _val
+    function dumbCb(arg){
+      /* dumb */
     }
 
     function doSearch(){
@@ -61,7 +64,7 @@
       var author = new argObj('author', $('#searchInp_author' ).val())
       var isbn   = new argObj('isbn', $('#searchInp_isbn' ).val())
 
-      getCall('search', title, author, isbn)
+      launchGetReq('search', dumbCb, title, author, isbn)
     }
 
     function wrapClick(ev){
