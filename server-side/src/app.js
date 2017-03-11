@@ -1,13 +1,13 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var database = require("../db/database");
+var Database = require("../db/database");
 
 var app = express();
 app.use(express.static("."));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
-var sql = new database();
+var sql = new Database();
 
 app.use(function(req,res,next){	
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8888');
