@@ -16,7 +16,7 @@
         data:'{}',
         success:function(msg){
           var json = msg;
-          $('#test').innerHTML = 'result = ' + json;
+          //$('#test').innerHTML = 'result = ' + json;
           $('#name').innerHTML =json.name;
           $('#email').innerHTML =json.email;
           $('#Want Table').innerHTML=json.WantTable;
@@ -38,8 +38,8 @@
   <div id='name'>Name</div><br>
   <div id='email'>Email</div><br>
   <p>Want Table<p>
-  <p>Have Table<p>
   <div id='Want Table'></div>
+  <p>Have Table<p>
   <div id='Have Table'></div>
   <div id='test'></div>
 </body>
