@@ -52,8 +52,8 @@
            url : URL, 
            success: function(msg){
                       console.log('launchGetReq success')
-                      doCb(msg)
-                    }, 
+					$('#searchResults').html(msg);
+	                    }, 
            error: function(jgXHR, textStatus, errorThrown){
                     console.log('launchGetReq error')
                     alert('Error: ' + textStatus + '\n' + errorThrown)
@@ -109,6 +109,8 @@
     <br>
     <button id='searchBtn'> Search! </button> <br>
     <a href='./adv-search.html'> Advanced Search </a> 
+
+	<div id="searchResults"></div>
 
     <script>
       $('#searchInp_title' ).keyup(function(ev){ wrapKeyup(ev) })

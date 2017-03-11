@@ -44,7 +44,7 @@ Database.prototype.getBooks = function(req){
 	if(req.query.title) qry += "books.title=" + db.escape(title);
 	if(req.query.author) qry += "books.author=" + db.escape(author);
 	if(req.query.isbn) qry += "books.isbn=" + db.escape(isbn);
-	qry +=  " and books.ownerid=users.id";
+	qry +=  " and books.status='1' and books.ownerid=users.id";
 	
 	console.log('query',qry);
 	
