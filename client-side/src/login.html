@@ -4,10 +4,10 @@
 
 <html>
 <header>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
   <title> Drexel BookSwap </title>
   <!-- include jQuery -->
-  <script src="http://code.jquery.com/jquery-3.1.0.js"></script>
+  <script src='http://code.jquery.com/jquery-3.1.0.js'></script>
   <script language='javascript'>
     function doLogin(){
       var email = $('#emailInp').val()
@@ -25,7 +25,7 @@
     function wrapKeyup(ev){
       ev.preventDefault()
       if (ev.keyCode == 13) // enter
-        $("#loginBtn").click()
+        $('#loginBtn').click()
 
       doLogin()
     }
@@ -36,9 +36,9 @@
     <h3> User Login </h3>
 
     <!-- input box and button -->
-    <input type="text" name="emailInp" id="emailInp" value="username"/>
-    <input type="text" name="pwordInp" id="pwordInp" value="password"/>
-    <button id="loginBtn"> Login </button>
+    <input type='text' name='emailInp' id='emailInp' value='email'/>
+    <input type='text' name='pwordInp' id='pwordInp' value='password'/>
+    <button id='loginBtn'> Login </button>
     <script>
       $('#emailInp').keyup(function(ev){ wrapKeyup(ev) })
       $('#pwordInp').keyup(function(ev){ wrapKeyup(ev) })
