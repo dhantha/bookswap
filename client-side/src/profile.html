@@ -3,33 +3,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">	</script>
-		<script type ="text/javascript">
-			var id= window.location.search.substring(1);
-			request();
-			function request(){
-				var URL = "localhost:8080/User?"+ id;
-				$.ajax({
-					type:"GET",
-					url: URL,
-					contentType: "application/json; charset=urf-8",
-					dataType:"jsonp",
-					data:"{}",
-					success:function(msg){
-						var json = msg;
-						document.getElementById("test").innerHTML = "result = " + json;
-						document.getElementById("name").innerHTML =json.name;
-						document.getElementById("email").innerHTML =json.email;
-						document.getElementById("Want Table").innerHTML=json.WantTable;
-						document.getElementById("Have Table").innerHTML=json.HaveTable;
-						},
-					error: function (xhr, ajaxOptions, thrownError){
-						document.getElementById("test").innerHTML = "Error fetching" + URL;
-					}
-					
-				});
-			}
-			
-		</script>
+		<script src="user_profile.js"></script>
 	</head>
 	
 	<body>

@@ -76,4 +76,57 @@ Database.prototype.getBooks = function(req){
 
 }//end function
 
+Database.prototype.getUser = function(ID){
+	var self = this;
+	var userID = ID;
+	db.query("select name,email from users where users.id="+ db.escape(userID),function(err,rows,fields){
+		if(err) throw err;
+		var User = {
+			name:rows.name,
+			email:rows.email
+		}
+		self.emit('user_profile',User);
+	});
+}
+
+Database.prototype.booksWant = function(ID){
+	var self = this;
+	var userID = ID;
+	var html = "";
+	html += "<table><tr>";
+	html += "<th>Title</th><th>Author</th><th>ISBN</th>";
+	html += "</tr>";
+	db.query("select * from books, users where users.id=books.ownerid and books.status='0'",function(err,rows,fields){
+		for(var j=0; j < rows.length; j++){
+			html += "<tr>";
+			html += "<td>" + result[j].title + "</td>";
+			html += "<td>" + result[j].author + "</td>";
+			html += "<td>" + result[j].isbn + "</td>";
+			html += "</tr>";
+		}
+		html += "</table>";
+	});
+	self.emit('books_want',html);
+}
+
+Database.prototype.booksHave = function(ID){
+	var self = this;
+	var userID = ID;
+	var html = "";
+	html += "<table><tr>";
+	html += "<th>Title</th><th>Author</th><th>ISBN</th>";
+	html += "</tr>";
+	db.query("select * from books, users where users.id=books.ownerid and books.status='1'",function(err,rows,fields){
+		for(var j=0; j < rows.length; j++){
+			html += "<tr>";
+			html += "<td>" + result[j].title + "</td>";
+			html += "<td>" + result[j].author + "</td>";
+			html += "<td>" + result[j].isbn + "</td>";
+			html += "</tr>";
+		}
+		html += "</table>";
+	});
+	self.emit('books_have',html);
+}
+
 module.exports = Database;

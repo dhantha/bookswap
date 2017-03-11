@@ -26,6 +26,32 @@ app.get('/search',function(req,res){
 	sql.getBooks(req);
 });
 
+app.post('/login',function(req,res){});
+
+app.post('/signup',function(req,res){});
+
+// populate the user page
+app.post('/User',function(req,res){
+	sql.once('user_profile',function(user){
+		res.json(user);
+	});
+	sql.getUser(req);
+});
+
+app.post('/booksWant',function(req,res){
+	sql.once('books_want',function(html){
+		res.send(html);
+	});
+	sql.booksWant(req);
+});
+
+app.post('/booksHave',function(req,res){
+	sql.onec('books_have',function(html){
+		res.send(html);
+	});
+	sql.booksHave(req);
+});
+
 app.listen(8080,function(){
 	console.log("listening on port 8080");
 });
