@@ -8,7 +8,6 @@
   <title> Drexel BookSwap </title>
   <!-- include jQuery -->
   <script src="http://code.jquery.com/jquery-3.1.0.js"></script>
-
   <script language='javascript'>
     function doLogin(){
       var uname = $('#unameInp').val()
@@ -19,10 +18,15 @@
     }
 
     function wrapClick(ev){
+      ev.preventDefault()
       doLogin()
     }
 
     function wrapKeyup(ev){
+      ev.preventDefault()
+      if (ev.keyCode == 13) // enter
+        $("#loginBtn").click()
+
       doLogin()
     }
 
