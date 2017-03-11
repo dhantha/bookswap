@@ -1,37 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
+<header>
   <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+  <!-- include jQuery -->
   <script src='http://code.jquery.com/jquery-3.1.0.js'></script>
+  <script type='text/javascript' src='./launchGetReq.js'></script>
   <script language='javascript'>
-    var id= window.location.search.substring(1);
-    request();
-    function request(){
-      var URL = 'localhost:8080/User?'+ id;
-      $.ajax({
-        type:'GET',
-        url: URL,
-        contentType: 'application/json; charset=urf-8',
-        dataType:'jsonp',
-        data:'{}',
-        success:function(msg){
-          var json = msg;
-          //$('#test').innerHTML = 'result = ' + json;
-          $('#name').innerHTML =json.name;
-          $('#email').innerHTML =json.email;
-          $('#Want Table').innerHTML=json.WantTable;
-          $('#Have Table').innerHTML=json.HaveTable;
-          },
-        error: function (xhr, ajaxOptions, thrownError){
-          $('#test').innerHTML = 'Error fetching' + URL;
-        }
-        
-      });
-    }
-    
-  </script>
-</head>
+    var id = new argObj('User', window.location.search.substring(1))
+    launchGetRequest('', updatePage, id)
 
+    function updatePage(arg){
+      $('#name').html(json.name)
+      $('#email').html(json.email)
+      $('#Want Table').html(json.WantTable)
+      $('#Have Table').html(json.HaveTable)
+    }
+  </script>
+</header>
 <body>
   <a herf='./index.html'> Home Page </a>
   <h3> User Profile </h3>
