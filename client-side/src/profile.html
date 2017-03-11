@@ -11,22 +11,21 @@
 
     // TODO is arg pre-jsonified?
     function updatePage(arg){
-      $('#name').html(json.name)
-      $('#email').html(json.email)
-      $('#Want Table').html(json.WantTable)
-      $('#Have Table').html(json.HaveTable)
+      $('#nameDiv').html(json.name)
+      $('#mailDiv').html(json.email)
+      $('#wantDiv').html(json.WantTable)
+      $('#haveDiv').html(json.HaveTable)
     }
   </script>
 </header>
 <body>
   <a href='./index.html'> Home Page </a>
   <h3> User Profile </h3>
-  <div id='name'>Name</div><br>
-  <div id='email'>Email</div><br>
-  <p>Want Table<p>
-  <div id='Want Table'></div>
-  <p>Have Table<p>
-  <div id='Have Table'></div>
-  <div id='test'></div>
+  <div id='nameDiv'> Name  </div><br>
+  <div id='mailDiv'> Email </div><br>
+  <p> Want Table <p>
+  <div id='wantDiv'></div>
+  <p> Have Table <p>
+  <div id='haveDiv'></div>
 </body>
 </html>
