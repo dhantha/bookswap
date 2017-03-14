@@ -30,26 +30,31 @@ app.post('/login',function(req,res){});
 
 app.post('/signup',function(req,res){});
 
+app.get('/logout',function(req,res){});
+
 // populate the user page
 app.post('/User',function(req,res){
+	var Id = req.body.ID;
 	sql.once('user_profile',function(user){
 		res.json(user);
 	});
-	sql.getUser(req);
+	sql.getUser(Id);
 });
 
 app.post('/booksWant',function(req,res){
+	var Id = req.body.ID;
 	sql.once('books_want',function(html){
 		res.send(html);
 	});
-	sql.booksWant(req);
+	sql.booksWant(Id);
 });
 
 app.post('/booksHave',function(req,res){
+	var Id = req.body.ID;
 	sql.onec('books_have',function(html){
 		res.send(html);
 	});
-	sql.booksHave(req);
+	sql.booksHave(Id);
 });
 
 app.listen(8080,function(){
