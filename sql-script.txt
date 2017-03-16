@@ -5,15 +5,15 @@ use bookswap;
 create table users (
 	id int not null auto_increment key,
 	name varchar(80),
-	email varchar(80),
-	password varchar(20)
+	email varchar(80) not null unique,
+	password varchar(20) not null
 );
 
 create table books (
-	id int not null auto_increment key,
-	title varchar(255),
-	author varchar(80),
-	owner int not null,
+	bookid int not null auto_increment key,
+	title varchar(255) not null,
+	author varchar(80) not null,
+	ownerid int not null,
 	isbn varchar(13),
 	status int not null
 );
@@ -27,7 +27,7 @@ insert into users
 	('Yongchang', 'yc552@drexel.edu', 'password');
 
 insert into books
-	(title, author, owner, status)
+	(title, author, ownerid, status)
 	values
 	('Portraits of Courage', 'George W. Bush', 1, 0),
 	('Hidden Figures', 'Margot Lee Shetterly', 1, 0),
