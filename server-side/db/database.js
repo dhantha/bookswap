@@ -129,4 +129,44 @@ Database.prototype.booksHave = function(ID){
 	self.emit('books_have',html);
 }
 
+Database.prototype.login=function(username,password){
+	var str ='SELECT id from Users WHERE email = \'' + username + '\' AND password = \''+password+'\';';
+	con.query(str,function(err,rows,fields){
+		if (err){
+			console.log('Error during query processing');
+			return 0;
+		}
+		else
+			if (rows.lenth>0)
+				self.emit('loggedin',1);
+			else
+				self.emit('loggedin',0)
+	});
+}
+
+Database.prototype.signup = function(username,email,password){
+	var str ='SELECT id from Users WHERE email = \'' + email +'\';';
+	con.query(str,function(err,rows,fields){
+		if (err){
+			console.log('Error during query processing');
+			return 0;
+		}
+		else{
+			if (rows.lenth>1)
+				self.emit('duplicate',0);
+			else{
+				var str = 'INSERT INTO Users (name,email,password) valuse (\''+username+ '\',\''+email+ '\',\''+password+'\');';
+				con.query(str,function(err,rows,fields){
+					if (err){
+						console.log('Error during query processing');
+						return 0;
+					}
+					else 
+						self.emit('duplicate',1);
+				});
+			}
+		}
+	});
+	//add auto increasement to the id in database
+}
 module.exports = Database;

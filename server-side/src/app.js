@@ -26,12 +26,59 @@ app.get('/search',function(req,res){
 	sql.getBooks(req);
 });
 
-app.post('/login',function(req,res){});
+//session part
+app.post('/login',function(req,res){
+	sql.once('loggedin',function(msg){
+		if(msg==1){
+			req.session.userid=req.body.username;
+			return res.redirect('/getUser')
+		}
+		else{
+			req.session.msg = "Invalid login";
+			return res.redirect('/');
+		}
+	});
 
-app.post('/signup',function(req,res){});
+	sql.login(req.body.username,req.body.password);
+});
 
-app.get('/logout',function(req,res){});
+app.post('/signup',function(req,res){
 
+	sql.once('duplicate',function(msg){
+		if(msg==0){
+			res.send(0);
+		}
+		else{
+			res.send(1);
+		}
+	})
+	sql.signup(req.body.name, req.body.email, req.body.password);
+
+});
+
+app.get('/getUser',function(req,res){
+	if(req.session.userid){
+		req.session.msg='NO userid';
+		return res.redirect('/');
+	}
+
+	return res.redirect('/personal');
+});
+
+
+app.get('/logout',function(req,res){
+	req.session.reset();
+	req.session.msg = 'Logged out';
+	return res.redirect('/')
+});
+
+app.get('/personal',function(req,res){
+	var Id = req.session.userid;
+	sql.once('user_profile',function(user){
+		res.json(user);
+	});
+	sql.getUser(Id);
+});
 // populate the user page
 app.post('/User',function(req,res){
 	var Id = req.body.ID;
