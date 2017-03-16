@@ -8,10 +8,33 @@
   <meta name="viewport" content="width = device-width, initial-scale = 1">
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<!--   <link rel="stylesheet" href="style.css"> -->
- </header>
+<!--   <link rel="stylesheet" href="style.css">
+ --> </header>
 
 <body>
+ <nav class="navbar navbar-inverse navbar-static-top" style="margin:0;">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+    <a class="navbar-brand" href="#">Drexel Book Swap</a>
+    </div><!--.navbar-header-->
+
+    <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+        <li><a href="login.html">Log in</a></li>
+        <li><a href="profile.html">Edit Profile</a></li>
+      </ul>
+    </div><!--/.navbar-collapse -->
+
+  </div><!--.container-->
+</nav>
+
 
 <div class="jumbotron">
   <div class="container">
@@ -20,9 +43,6 @@
   spot for swappin' text! Cancel that online order, burn your library
   card - reading's free from now on.</p>
 
-  <a href='login.html'> User Login </a>
-  <a href='profile.html'> My Profile </a> 
-  <br><br>
   <!-- input box and button -->
   <input type='text' id='searchInp_title'  placeholder='Title'/>
   <input type='text' id='searchInp_author' placeholder='Author'/>
@@ -36,18 +56,9 @@
 </div><!--.jumotron-->
 
 
-<div class="container">
-  <hr>
-  <footer>
-  <p>&copy; 2016 Company, Inc.</p>
-  </footer>
-</div> <!-- /container -->
-
-
-
 <script src='http://code.jquery.com/jquery-3.1.0.js'></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script type='text/javascript' src='./launchGetReq.js'></script>
+<script type='text/javascript' src='launchGetReq.js'></script>
 
 <script language='javascript'>
 //dumb
@@ -83,6 +94,7 @@ function wrapKeyup(ev){
   $('#searchInp_author').keyup(function(ev){ wrapKeyup(ev) })
   $('#searchInp_isbn'  ).keyup(function(ev){ wrapKeyup(ev) })
   $('#searchBtn').click(function(ev){ wrapClick(ev) })
-</script>    
+</script>
+
 </body>
 </html>
