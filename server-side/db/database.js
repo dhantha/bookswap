@@ -155,7 +155,7 @@ Database.prototype.signup = function(username,email,password){
 			if (rows.lenth>1)
 				self.emit('duplicate',0);
 			else{
-				var str = 'INSERT INTO Users (name,email,password) valuse (\''+username+ '\',\''+email+ '\',\''+password+'\');';
+				var str = 'INSERT INTO Users (name,email,password) valuse (\''+username+ '\',\''+email+ '\',PASSWORD(\''+password+'\'));';
 				con.query(str,function(err,rows,fields){
 					if (err){
 						console.log('Error during query processing');
