@@ -4,6 +4,26 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<<<<<<< HEAD
+    <script src='http://code.jquery.com/jquery-3.1.0.js'></script>
+    <script language='javascript'>
+      // expect object from json
+      function updateNameEmail(data){
+        $('#nameDiv').innerHTML(data.name)
+        $('#mailDiv').innerHTML(data.email)
+      }
+
+      // expect html table
+      function updateBooksHave(html){
+        $('#haveDiv').innerHTML(html)
+      }
+
+      // expect html table
+      function updateBooksWant(html){
+        $('#wantDiv').innerHTML(html)
+      }
+    </script>
+=======
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">	</script>
 		<script>
 		var ID = decodeURIComponent(window.location.search.substring(1)); // this should be the user id
@@ -49,6 +69,7 @@
 			type: 'POST'
 	});
 </script>
+>>>>>>> 6d7318cf340be42ea8ab9ac5eaed920cd4e2dc6f
 	</head>
 	
 	<body>
@@ -80,8 +101,5 @@
     ISBN : <input type="text" name="isbn"><br>
     <button name="data" type="button" id="haveButton">Submit</button>  
   </form>
-  <div>
-    
-  </div>
 	</body>
 </html>

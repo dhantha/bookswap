@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 
 
 var fs = require('fs');
-var pw = fs.readFileSync('../pw.txt','utf8'); // change this if i commit this without changing
+var pw = fs.readFileSync('../pw.txt','utf8').trim(); // change this if i commit this without changing
 
 var mysql = require('mysql');
 var db = mysql.createConnection({

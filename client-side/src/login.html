@@ -7,6 +7,8 @@
   <title> Drexel BookSwap </title>
   <!-- include jQuery -->
   <script src='http://code.jquery.com/jquery-3.1.0.js'></script>
+  <script type='text/javascript' src='user_profile.js'></script>
+  <script type='text/javascript' src='launchPostReq.js'></script>
   <script language='javascript'>
     function doLogin(){
       var email = $('#emailInp').val();
@@ -49,8 +51,8 @@
     <h3> User Login </h3>
 
     <!-- input box and button -->
-    <input type='text' name='emailInp' id='emailInp' value='email'/>
-    <input type='text' name='pwordInp' id='pwordInp' value='password'/>
+    <input type='text' name='emailInp' id='emailInp' placeholder='email'/>
+    <input type='text' name='pwordInp' id='pwordInp' placeholder='password'/>
     <button id='loginBtn'> Login </button>
 	<div id='test'></div>
     <script>
