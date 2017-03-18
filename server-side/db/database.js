@@ -130,23 +130,26 @@ Database.prototype.booksHave = function(ID){
 }
 
 Database.prototype.login=function(username,password){
+	var self = this;
 	var str ='SELECT id from Users WHERE email = \'' + username + '\' AND password = \''+password+'\';';
-	con.query(str,function(err,rows,fields){
+	db.query(str,function(err,rows,fields){
 		if (err){
 			console.log('Error during query processing');
 			return 0;
 		}
 		else
-			if (rows.lenth>0)
-				self.emit('loggedin',1);
+			console.log(rows[0].id);
+			if (rows.length>0)
+				self.emit('loggedin',rows);
 			else
 				self.emit('loggedin',0)
 	});
 }
 
 Database.prototype.signup = function(username,email,password){
+	var self = this;
 	var str ='SELECT id from Users WHERE email = \'' + email +'\';';
-	con.query(str,function(err,rows,fields){
+	db.query(str,function(err,rows,fields){
 		if (err){
 			console.log('Error during query processing');
 			return 0;
@@ -155,6 +158,8 @@ Database.prototype.signup = function(username,email,password){
 			if (rows.lenth>1)
 				self.emit('duplicate',0);
 			else{
+				var str = 'INSERT INTO Users (name,email,password) valuse (\''+username+ '\',\''+email+ '\',\''+password+'\');';
+				db.query(str,function(err,rows,fields){
 				var str = 'INSERT INTO Users (name,email,password) valuse (\''+username+ '\',\''+email+ '\',PASSWORD(\''+password+'\'));';
 				con.query(str,function(err,rows,fields){
 					if (err){
