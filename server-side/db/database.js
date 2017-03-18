@@ -10,7 +10,7 @@ var mysql = require('mysql');
 var db = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
-	password: pw,
+	password: pw.trim(),
 	database: 'bookswap'
 });
 
@@ -41,9 +41,9 @@ Database.prototype.getBooks = function(req){
 	console.log('got title',title);
 
 	var qry = "select * from books,users where "; 
-	if(req.query.title) qry += "books.title=" + db.escape(title);
-	if(req.query.author) qry += "books.author=" + db.escape(author);
-	if(req.query.isbn) qry += "books.isbn=" + db.escape(isbn);
+	if(req.query.title)  qry += "books.title regexp"   + db.escape(title);
+	if(req.query.author) qry += "books.author regexp " + db.escape(author);
+	if(req.query.isbn)   qry += "books.isbn="          + db.escape(isbn);
 	qry +=  " and books.status='1' and books.ownerid=users.id";
 	
 	console.log('query',qry);
@@ -57,7 +57,7 @@ Database.prototype.getBooks = function(req){
 
 // 		var result = json.parse(json.stringify(rows));
 		var result = rows;
-
+    console.log(rows.length);
 		for(var j=0; j < rows.length; j++){
 			html += "<tr>";
 			html += "<td>" + result[j].title + "</td>";
@@ -70,7 +70,7 @@ Database.prototype.getBooks = function(req){
 		html += "</table>";
 		
 		console.log('html',html);
-	self.emit('search',html);
+    self.emit('search',html);
 
 	});//query
 
@@ -160,6 +160,8 @@ Database.prototype.signup = function(username,email,password){
 			else{
 				var str = 'INSERT INTO Users (name,email,password) valuse (\''+username+ '\',\''+email+ '\',\''+password+'\');';
 				db.query(str,function(err,rows,fields){
+				var str = 'INSERT INTO Users (name,email,password) valuse (\''+username+ '\',\''+email+ '\',PASSWORD(\''+password+'\'));';
+				con.query(str,function(err,rows,fields){
 					if (err){
 						console.log('Error during query processing');
 						return 0;

@@ -23,7 +23,7 @@ insert into users
 	values
 	('Deb','stoddard@drexel.edu','password'),
 	('Ed', 'ecallaghan93@gmail.com', 'password'),
-	('Dhanta', 'dhanthag@gmail.com', 'password'),
+	('Dhantha', 'dhanthag@gmail.com', 'password'),
 	('Yongchang', 'yc552@drexel.edu', 'password');
 
 insert into books

@@ -28,6 +28,7 @@ app.use(function(req,res,next){
 
 app.get('/search',function(req,res){
 	sql.once('search',function(html){
+		console.log('got search emit with:',html);
 		res.send(html);
 	});
 
