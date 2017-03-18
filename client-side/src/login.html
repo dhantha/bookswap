@@ -9,11 +9,27 @@
   <script src='http://code.jquery.com/jquery-3.1.0.js'></script>
   <script language='javascript'>
     function doLogin(){
-      var email = $('#emailInp').val()
-      var pword = $('#pwordInp').val()
-
+      var email = $('#emailInp').val();
+      var pword = $('#pwordInp').val();
+	  var URL = "http://localhost:8080/login";
+	  var formdata = {username: email,password: pword};
+	  $.ajax({
+					type:"POST",
+					url: URL,
+					dataType:"text",
+					data:formdata,
+					success:function(msg){
+						var str = "porfile.html?"+msg;
+						document.getElementById("test").innerHTML = str;
+						window.location.href = str;
+						},
+					error: function (xhr, ajaxOptions, thrownError){
+						console.log("error");	
+					}
+					
+		});
       /* dumb */
-      alert('Logging `' + email + '\' in with password `' + pword + '\'')
+      //alert('Logging `' + email + '\' in with password `' + pword + '\'')
     }
 
     function wrapClick(ev){
@@ -25,8 +41,6 @@
       ev.preventDefault()
       if (ev.keyCode == 13) // enter
         $('#loginBtn').click()
-
-      doLogin()
     }
 
   </script>
@@ -38,6 +52,7 @@
     <input type='text' name='emailInp' id='emailInp' value='email'/>
     <input type='text' name='pwordInp' id='pwordInp' value='password'/>
     <button id='loginBtn'> Login </button>
+	<div id='test'></div>
     <script>
       $('#emailInp').keyup(function(ev){ wrapKeyup(ev) })
       $('#pwordInp').keyup(function(ev){ wrapKeyup(ev) })
