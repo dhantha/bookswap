@@ -5,6 +5,23 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script src='http://code.jquery.com/jquery-3.1.0.js'></script>
+    <script language='javascript'>
+      // expect object from json
+      function updateNameEmail(data){
+        $('#nameDiv').innerHTML(data.name)
+        $('#mailDiv').innerHTML(data.email)
+      }
+
+      // expect html table
+      function updateBooksHave(html){
+        $('#haveDiv').innerHTML(html)
+      }
+
+      // expect html table
+      function updateBooksWant(html){
+        $('#wantDiv').innerHTML(html)
+      }
+    </script>
 	</head>
 	
 	<body>
@@ -36,8 +53,5 @@
     ISBN : <input type="text" name="isbn"><br>
     <button name="data" type="button" id="haveButton">Submit</button>  
   </form>
-  <div>
-    
-  </div>
 	</body>
 </html>
