@@ -5,21 +5,22 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script src='http://code.jquery.com/jquery-3.1.0.js'></script>
+    <script type='text/javascript' src='launchPostReq.js'></script>
     <script language='javascript'>
       // expect object from json
       function updateNameEmail(data){
-        $('#nameDiv').innerHTML(data.name)
-        $('#mailDiv').innerHTML(data.email)
+        $('#nameDiv').html(data.name)
+        $('#mailDiv').html(data.email)
       }
 
       // expect html table
       function updateBooksHave(html){
-        $('#haveDiv').innerHTML(html)
+        $('#haveDiv').html(html)
       }
 
       // expect html table
       function updateBooksWant(html){
-        $('#wantDiv').innerHTML(html)
+        $('#wantDiv').html(html)
       }
 
       $(document).ready(function(){
