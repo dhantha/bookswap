@@ -20,13 +20,15 @@ var sql = new Database()
 
 app.use(function(req,res,next){	
     res.setHeader('Access-Control-Allow-Origin', 
-                  'http://localhost:8888')
+                  'http://localhost:8080')
     res.setHeader('Access-Control-Allow-Methods', 
                   'GET, POST, OPTIONS, PUT, PATCH, DELETE')
     res.setHeader('Access-Control-Allow-Headers', 
                   'X-Requested-With,content-type')
     res.setHeader('Access-Control-Allow-Credentials', 
                    true)
+    res.setHeader('X-Content-Type-Options', 
+                  'nosniff')
     next();	
 })
 
@@ -94,6 +96,7 @@ app.get('/personal',function(req,res){
 	})
 	sql.getUser(Id)
 })
+
 // populate the user page
 app.post('/User',function(req,res){
 	var ID = req.body.id
