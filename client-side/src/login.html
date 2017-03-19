@@ -2,35 +2,39 @@
 <!DOCTYPE HTML>
 
 <html>
-<header>
-  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
-  <title> Drexel BookSwap </title>
-  <!-- include jQuery -->
-  <script src='http://code.jquery.com/jquery-3.1.0.js'></script>
-  <script type='text/javascript' src='user_profile.js'></script>
-  <script type='text/javascript' src='launchPostReq.js'></script>
-  <script language='javascript'>
-    function doLogin(){
-      var email = $('#emailInp').val()
-      var pword = $('#pwordInp').val()
+  <header>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+    <title> Drexel BookSwap </title>
+    <!-- include jQuery -->
+    <script src='http://code.jquery.com/jquery-3.1.0.js'></script>
+    <script type='text/javascript' src='launchPostReq.js'></script>
+    <script language='javascript'>
+      function doLogin(){
+        var email = $('#emailInp').val()
+        var pword = $('#pwordInp').val()
 
-      /* dumb */
-      alert('Logging `' + email + '\' in with password `' + pword + '\'')
-    }
+        /* dumb */
+        alert('Logging `' + email + '\' in with password `' + pword + '\'')
 
-    function wrapClick(ev){
-      ev.preventDefault()
-      doLogin()
-    }
+        // postObjs to pass uname and password to db
+        // similar to argObjs->getObjs on client side
+//      launchPostReq('User', dumbcb, nameArg, mailArg)
+      }
 
-    function wrapKeyup(ev){
-      ev.preventDefault()
-      if (ev.keyCode == 13) // enter
-        $('#loginBtn').click()
-    }
+      function wrapClick(ev){
+        ev.preventDefault()
+        doLogin()
+      }
 
-  </script>
-</header>
+      function wrapKeyup(ev){
+        ev.preventDefault()
+        if (ev.keyCode == 13) // enter
+          $('#loginBtn').click()
+      }
+
+    </script>
+  </header>
+
   <body>
     <h3> User Login </h3>
 

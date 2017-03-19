@@ -1,5 +1,6 @@
 $(document).ready(function(){
-	var ID = decodeURIComponent(window.location.search.substring(1)); // this should be the user id
+  // grab user ID from URL
+  var ID = decodeURIComponent(window.location.search.substring(1));
 
   launchPostReq('User',      updateNameEmail, ID);
   launchPostReq('booksWant', updateBooksWant, ID);

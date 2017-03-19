@@ -19,7 +19,7 @@ function launchPostReq(){
    datatype: 'jsonp',
    data: {id:ID}, 
    success: function(msg){
-              console.log('launchePostReq success')
+              console.log('launchPostReq success')
               doCb(msg)
             }, 
    error: function(jgXHR, textStatus, errorThrown){
