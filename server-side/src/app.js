@@ -99,7 +99,7 @@ app.post('/booksWant',function(req,res){
 
 app.post('/booksHave',function(req,res){
 	var Id = req.body.ID;
-	sql.onec('books_have',function(html){
+	sql.once('books_have',function(html){
 		res.send(html);
 	});
 	sql.booksHave(Id);
