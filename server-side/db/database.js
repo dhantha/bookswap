@@ -103,8 +103,8 @@ Database.prototype.booksWant = function(ID){
   var html = '<table><tr>'
            + '<th>Title</th><th>Author</th><th>ISBN</th>'
            + '</tr>'
-  var qry = 'select * from books, users where users.id=books.ownerid '
-          + 'and books.status=\'0\''
+  var qry = 'select * from books where ownerid=' + db.escape(userID)
+          + 'and status=\'0\''
   console.log(qry)
   db.query(qry, function(err,rows,fields){
     for(var j=0; j < rows.length; j++){
@@ -115,7 +115,6 @@ Database.prototype.booksWant = function(ID){
       html += '</tr>'
     }
     html += '</table>'
-    console.log(html)
     self.emit('books_want',html);
   })
 }
@@ -126,8 +125,8 @@ Database.prototype.booksHave = function(ID){
   var html = '<table><tr>'
            + '<th>Title</th><th>Author</th><th>ISBN</th>'
            + '</tr>'
-  var qry = 'select * from books, users where users.id=books.ownerid '
-          + 'and books.status=\'1\''
+  var qry = 'select * from books where ownerid=' + db.escape(userID)
+          + 'and status=\'1\''
   console.log(qry)
   db.query(qry, function(err,rows,fields){
     for(var j=0; j < rows.length; j++){
@@ -138,7 +137,6 @@ Database.prototype.booksHave = function(ID){
       html += '</tr>'
     }
     html += '</table>'
-    console.log(html)
     self.emit('books_have',html);
   })
 }
