@@ -10,10 +10,14 @@ app.use(bodyParser.json());
 var sql = new Database();
 
 app.use(function(req,res,next){	
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8888');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader('Access-Control-Allow-Origin', 
+                  'http://localhost:8888');
+    res.setHeader('Access-Control-Allow-Methods', 
+                  'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 
+                  'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', 
+                   true);
     next();	
 });
 
@@ -82,27 +86,27 @@ app.get('/personal',function(req,res){
 });
 // populate the user page
 app.post('/User',function(req,res){
-	var Id = req.body.ID;
+	var ID = req.body.id;
 	sql.once('user_profile',function(user){
 		res.json(user);
 	});
-	sql.getUser(Id);
+	sql.getUser(ID);
 });
 
 app.post('/booksWant',function(req,res){
-	var Id = req.body.ID;
+	var ID = req.body.id;
 	sql.once('books_want',function(html){
 		res.send(html);
 	});
-	sql.booksWant(Id);
+	sql.booksWant(ID);
 });
 
 app.post('/booksHave',function(req,res){
-	var Id = req.body.ID;
+	var ID = req.body.id;
 	sql.once('books_have',function(html){
 		res.send(html);
 	});
-	sql.booksHave(Id);
+	sql.booksHave(ID);
 });
 
 app.listen(8080,function(){
