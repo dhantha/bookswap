@@ -1,4 +1,4 @@
-// dumb object to wrap GET arguments
+// dumb object to wrap arguments
 // http://host:port/endpoint?name=val
 function argObj(_name, _val){
   this.name = _name

@@ -142,23 +142,30 @@ Database.prototype.booksHave = function(ID){
 }
 
 Database.prototype.login = function(username,password){
-  var str ='SELECT id from Users WHERE email = \'' + username + '\' AND password = \''+password+'\';';
-  con.query(str,function(err,rows,fields){
+  var self = this
+  var qry = 'SELECT id from users WHERE email = \'' 
+          + username 
+          + '\' AND password = \'' 
+          + password + '\';'
+  console.log(qry)
+  db.query(qry,function(err,rows,fields){
     if (err){
-      console.log('Error during query processing');
+      console.log('Error during query processing')
       return 0;
     }
     else
-      if (rows.lenth>0)
-        self.emit('loggedin',1);
+      if (0 < rows.length)
+        self.emit('loggedin', rows[0].id)
       else
-        self.emit('loggedin',0)
+        self.emit('loggedin', -1)
   });
 }
 
 Database.prototype.signup = function(username,email,password){
-  var str ='SELECT id from Users WHERE email = \'' + email +'\';';
-  con.query(str,function(err,rows,fields){
+  var self = this
+  var qry ='SELECT id from users WHERE email = \'' + email +'\';';
+  console.log(qry)
+  db.query(qry,function(err,rows,fields){
     if (err){
       console.log('Error during query processing');
       return 0;

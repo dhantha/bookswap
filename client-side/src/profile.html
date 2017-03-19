@@ -28,9 +28,9 @@
         var ID = decodeURIComponent(
                    window.location.search.substring(1).split('=')[1]);
 
-        launchPostReq('User',      updateNameEmail, ID);
-        launchPostReq('booksWant', updateBooksWant, ID);
-        launchPostReq('booksHave', updateBooksHave, ID);
+        launchPostReq('User',      updateNameEmail, new argObj('id', ID));
+        launchPostReq('booksWant', updateBooksWant, new argObj('id', ID));
+        launchPostReq('booksHave', updateBooksHave, new argObj('id', ID));
       })
     </script>
 	</head>
