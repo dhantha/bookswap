@@ -177,7 +177,7 @@ app.post('/rmBook', function(req, res){
   sql.once('rm_book', function(){
     res.send(URL)
   })
-  sql.addBook(ID, req.body.title, req.body.author, req.body.isbn, sts)
+  sql.rmBooks(ID, sts, req.body.books)
 })
 
 app.listen(8080,function(){

@@ -53,7 +53,7 @@ Database.prototype.getBooks = function(req){
     //
     html += "<table><tr>";
     html += "<th>Title</th><th>Author</th><th>ISBN</th><th>Owner</th>";
-    html += "</tr>";
+    html += "<book>";
 
 //    var result = json.parse(json.stringify(rows));
     var result = rows;
@@ -101,7 +101,7 @@ Database.prototype.booksWant = function(ID){
   var self = this;
   var userID = ID;
   var html = '<table><tr>'
-           + '<th>Title</th><th>Author</th><th>ISBN</th>'
+           + '<th>Title</th><th>Author</th><th>ISBN</th><th>Remove?</th>'
            + '</tr>'
   var qry = 'select * from books where ownerid=' + db.escape(userID)
           + 'and status=\'0\''
@@ -112,6 +112,12 @@ Database.prototype.booksWant = function(ID){
       html += '<td>' + rows[j].title  + '</td>'
       html += '<td>' + rows[j].author + '</td>'
       html += '<td>' + rows[j].isbn   + '</td>'
+      html += '<td>'
+            + '<input id=\'wantRmBox_' + rows[j].bookid + '\' '
+            + 'class=\'wantRmBox\' '
+            + 'type=\'checkbox\' '
+            + 'value=\'' + rows[j].bookid + '\'>'
+            + '</td>'
       html += '</tr>'
     }
     html += '</table>'
@@ -123,7 +129,7 @@ Database.prototype.booksHave = function(ID){
   var self = this;
   var userID = ID;
   var html = '<table><tr>'
-           + '<th>Title</th><th>Author</th><th>ISBN</th><th></th>'
+           + '<th>Title</th><th>Author</th><th>ISBN</th><th>Remove?</th>'
            + '</tr>'
   var qry = 'select * from books where ownerid=' + db.escape(userID)
           + 'and status=\'1\''
@@ -134,7 +140,12 @@ Database.prototype.booksHave = function(ID){
       html += '<td>' + rows[j].title  + '</td>'
       html += '<td>' + rows[j].author + '</td>'
       html += '<td>' + rows[j].isbn   + '</td>'
-      html += '<td><a href=\'#\'>' + rows[j].bookid + '</a></td>'
+      html += '<td>'
+            + '<input id=\'haveRmBox_' + rows[j].bookid + '\' '
+            + 'class=\'haveRmBox\' '
+            + 'type=\'checkbox\' '
+            + 'value=\'' + rows[j].bookid + '\'>'
+            + '</td>'
       html += '</tr>'
     }
     html += '</table>'
@@ -206,6 +217,29 @@ Database.prototype.addBook = function(userid, title, author, isbn, sts){
       throw err
     else
       self.emit('add_book')
+  })
+}
+
+Database.prototype.rmBooks = function(ID, sts, books){
+  var self = this
+  if (books.length == 0){
+    self.emit('rm_book')
+    return
+  }
+
+  books = books.split(',')
+
+  var qry = 'DELETE FROM books WHERE bookid=\'' + books[0] + '\' '
+  for (var i = 1 ; i < books.length ; i++)
+    qry += 'OR bookid=\'' + books[i] + '\' '
+  qry += 'AND ownerid=\'' + ID + '\' '
+  qry += 'AND status=\'' + sts + '\';'
+  console.log(qry)
+  db.query(qry, function(err, rows, fields){
+    if (err)
+      throw err
+    else
+      self.emit('rm_book')
   })
 }
 

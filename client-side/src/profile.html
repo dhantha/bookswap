@@ -51,6 +51,25 @@
                    )
     }
 
+    function doRmBook(trx){
+      // grab user ID from URL FIXME clean this up
+      var ID = decodeURIComponent(
+                 window.location.search.substring(1).split('=')[1]);
+
+      var rmBox = '.' + trx + 'RmBox'
+      rmArray = Array()
+      $.each($(rmBox), function(){
+        if ($(this).is(':checked'))
+          rmArray.push($(this).val())
+      })
+
+      console.log(new argObj('list', rmArray))
+      if (0 < rmArray.length)
+        launchPostReq('rmBook', loadPage, new argObj('id', ID), 
+                                          new argObj('trx', trx), 
+                                          new argObj('books', rmArray))
+    }
+
     // Wrapper for add entering
     function wrapKeyup(ev, trx){
       ev.preventDefault()
@@ -82,10 +101,14 @@
   <h3> User Profile </h3>
   <div id='nameDiv'> Name  </div><br>
   <div id='mailDiv'> Email </div><br>
+
   <p> Books I Have <p>
   <div id='haveDiv'></div>
+  <button id='haveRmBtn'> Delete </button>
+
   <p> Books I Want <p>
   <div id='wantDiv'></div>
+  <button id='wantRmBtn'> Delete </button>
 
   <!-- add books you have -->
   <div>
@@ -121,6 +144,9 @@
     $('#haveTitleInp' ).keyup(function(ev){ wrapKeyup(ev, 'have') })
     $('#wantAuthorInp').keyup(function(ev){ wrapKeyup(ev, 'want') })
     $('#wantIsbnInp'  ).keyup(function(ev){ wrapKeyup(ev, 'want') })
+
+    $('#haveRmBtn').click(function(ev){ doRmBook('have') })
+    $('#wantRmBtn').click(function(ev){ doRmBook('want') })
   </script>
 </body>
 </html>
