@@ -188,4 +188,24 @@ Database.prototype.signup = function(username,email,password){
   });
   //add auto increasement to the id in database
 }
+
+Database.prototype.addBook = function(userid, title, author, isbn, sts){
+  var self = this
+  var qry = 'INSERT INTO books (title, author, ownerid, isbn, status) '
+          + ' values ('
+          + '\'' + title  + '\','
+          + '\'' + author + '\','
+          + '\'' + isbn   + '\','
+          + '\'' + userid + '\','
+          + '\'' + sts    + '\''
+          + ')'
+  console.log(qry)
+  db.query(qry, function(err, rows, fields){
+    if (err)
+      throw err
+    else
+      self.emit('add_book')
+  })
+}
+
 module.exports = Database;

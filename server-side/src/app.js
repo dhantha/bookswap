@@ -126,7 +126,6 @@ app.post('/profile', function(req, res){
   res.send(url)
 })
 
-
 app.post('/booksWant',function(req,res){
 	var ID = req.body.id
 	sql.once('books_want',function(html){
@@ -141,6 +140,25 @@ app.post('/booksHave',function(req,res){
 		res.send(html)
 	})
 	sql.booksHave(ID)
+})
+
+app.post('/addBook', function(req, res){
+  var ID = req.body.id
+  var URL = '/profile.html?id=' + ID
+  var sts
+  if (req.body.trx == 'have')
+    sts = 1
+  else if (req.body.trx == 'want')
+    sts = 0
+  else{
+    res.send(URL)
+    return
+  }
+
+  sql.once('add_book', function(req, res){
+    res.send(url)
+  })
+  sql.addBook(ID, req.body.title, req.body.author, req.body.isbn, sts)
 })
 
 app.listen(8080,function(){

@@ -1,9 +1,15 @@
 <!-- BookSwap -->
 <!DOCTYPE HTML>
 
+<!-- TODO
+       DELETE LINK FOR BOTH LISTS
+       name/email, have, want updates collapsed into single post
+       better URI parsing
+  -->
+
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
   <script src='http://code.jquery.com/jquery-3.1.0.js'></script>
   <script type='text/javascript' src='aux.js'></script>
   <script type='text/javascript' src='launchReq.js'></script>
@@ -24,8 +30,33 @@
       $('#wantDiv').html(html)
     }
 
+    // tell server to log out
     function doLogout(){
       launchPostReq('logout', loadPage)
+    }
+
+    // trx = 'have', 'want'
+    function doAddBook(trx){
+      // grab user ID from URL FIXME clean this up
+      var ID = decodeURIComponent(
+                 window.location.search.substring(1).split('=')[1]);
+      var titleInp  = '#' + trx + 'TitleInp'
+      var authorInp = '#' + trx + 'AuthorInp'
+      var isbnInp   = '#' + trx + 'IsbnInp'
+      launchPostReq('addBook', loadPage, new argObj('id', ID), 
+                               new argObj('title',  $(titleInp ).val()), 
+                               new argObj('author', $(authorInp).val()), 
+                               new argObj('isbn'  , $(isbnInp  ).val())
+                   )
+    }
+
+    // Wrapper for add entering
+    function wrapKeyup(ev, trx){
+      ev.preventDefault()
+      if (ev.keyCode == 13){ // enter
+        var btn = '#' + trx + 'Btn'
+        $(btn).click()
+      }
     }
 
     // on start-up, populate user-specific info
@@ -50,36 +81,46 @@
   <h3> User Profile </h3>
   <div id='nameDiv'> Name  </div><br>
   <div id='mailDiv'> Email </div><br>
-  <p> Want Table <p>
-  <div id='wantDiv'></div>
-  <p> Have Table <p>
+  <p> Books I Have <p>
   <div id='haveDiv'></div>
+  <p> Books I Want <p>
+  <div id='wantDiv'></div>
 
   <!-- add books you have -->
   <div>
-    <p> Enter a book you have </p>
+    <p> Have a book? </p>
     <br>
-    <form action="">
-      Title: <input type="text" name="title"><br>
-      Author: <input type="text" name="author"><br>
-      ISBN: <input type="text" name="isbn"><br>
-      <button name="data" type="button" id="wantBtn">Submit</button>
-    </form>
+  <form>
+    Title:  <input id='haveTitleInp'  type='text'><br>
+    Author: <input id='haveAuthorInp' type='text'><br>
+    ISBN:   <input id='haveIsbnInp'   type='text'><br>
+    <button id='haveBtn' type='button'>Submit</button>  
+  </form>
   </div>
 
   <!-- add books you want -->
-  <p>Enter a book you want</p>
+  <p> Need a book? </p>
   <br>
-  <form action="">
-    Title: <input type="text" name="title"><br>
-    Author: <input type="text" name="author"><br>
-    ISBN: <input type="text" name="isbn"><br>
-    <button name="data" type="button" id="haveButton">Submit</button>  
+  <form>
+    Title:  <input id='wantTitleInp'  type='text'><br>
+    Author: <input id='wantAuthorInp' type='text'><br>
+    ISBN:   <input id='wantIsbnInp'   type='text'><br>
+    <button id='wantBtn' type='button'>Submit</button>  
   </form>
 
   <!-- event handlers -->
   <script language='javascript'>
-    $('#logoutLnk').click(function(ev){ doLogout() })
+    alert('here')
+    // home page link here
+    $('#logoutLnk'    ).click(function(ev){ doLogout() })
+    $('#haveBtn'      ).click(function(ev){ doAddBook('have') })
+    $('#wantBtn'      ).click(function(ev){ doAddBook('want') })
+    $('#haveTitleInp' ).keyup(function(ev){ wrapKeyup(ev, 'have') })
+    $('#haveAuthorInp').keyup(function(ev){ wrapKeyup(ev, 'have') })
+    $('#haveIsbnInp'  ).keyup(function(ev){ wrapKeyup(ev, 'have') })
+    $('#haveTitleInp' ).keyup(function(ev){ wrapKeyup(ev, 'have') })
+    $('#wantAuthorInp').keyup(function(ev){ wrapKeyup(ev, 'want') })
+    $('#wantIsbnInp'  ).keyup(function(ev){ wrapKeyup(ev, 'want') })
   </script>
 </body>
 </html>
