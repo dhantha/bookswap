@@ -15,7 +15,6 @@ app.use(session({
   })
 )
 
-
 var sql = new Database()
 
 app.use(function(req,res,next){	
@@ -118,6 +117,16 @@ app.post('/User',function(req,res){
 	sql.getUser(ID)
 })
 
+app.post('/profile', function(req, res){
+  console.log('request to profile')
+  var ID = req.session.userid
+  if (ID == undefined)
+    ID = 0
+  var url = '/profile.html?id=' + ID
+  res.send(url)
+})
+
+
 app.post('/booksWant',function(req,res){
 	var ID = req.body.id
 	sql.once('books_want',function(html){
@@ -132,15 +141,6 @@ app.post('/booksHave',function(req,res){
 		res.send(html)
 	})
 	sql.booksHave(ID)
-})
-
-app.post('/profile', function(req, res){
-  console.log('request to profile')
-  var ID = req.session.userid
-  if (ID == undefined)
-    ID = 0
-  var url = '/profile.html?id=' + ID
-  res.send(url)
 })
 
 app.listen(8080,function(){
