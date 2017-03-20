@@ -145,6 +145,12 @@ app.post('/booksHave',function(req,res){
 app.post('/addBook', function(req, res){
   var ID = req.body.id
   var URL = '/profile.html?id=' + ID
+
+  if (req.session.userid != ID){
+    res.send(URL)
+    return
+  }
+
   var sts
   if (req.body.trx == 'have')
     sts = 1
@@ -164,6 +170,12 @@ app.post('/addBook', function(req, res){
 app.post('/rmBook', function(req, res){
   var ID = req.body.id
   var URL = '/profile.html?id=' + ID
+
+  if (req.session.userid != ID){
+    res.send(URL)
+    return
+  }
+
   var sts
   if (req.body.trx == 'have')
     sts = 1
