@@ -56,12 +56,11 @@ function launchGetReq(){
 // output: none
 // sidefx: launches asynchronous GET request
 function launchPostReq(){
-  if (arguments.length < 3)
+  if (arguments.length < 2)
     return;
 
   var endpoint = arguments[0]
   var doCb = arguments[1]
-  console.log('doCb', doCb);
 
   // build json out of arguments
   var json = '{\n  '

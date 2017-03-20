@@ -1,44 +1,52 @@
 <!-- BookSwap -->
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 
 <html>
-  <head>
+<head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script src='http://code.jquery.com/jquery-3.1.0.js'></script>
-    <script type='text/javascript' src='launchReq.js'></script>
-    <script language='javascript'>
-      // expect object from json
-      function updateNameEmail(data){
-        $('#nameDiv').html(data.name)
-        $('#mailDiv').html(data.email)
+  <script src='http://code.jquery.com/jquery-3.1.0.js'></script>
+  <script type='text/javascript' src='aux.js'></script>
+  <script type='text/javascript' src='launchReq.js'></script>
+  <script language='javascript'>
+    // expect object from json
+    function updateNameEmail(data){
+      $('#nameDiv').html(data.name)
+      $('#mailDiv').html(data.email)
+    }
+
+    // expect html table
+    function updateBooksHave(html){
+      $('#haveDiv').html(html)
+    }
+
+    // expect html table
+    function updateBooksWant(html){
+      $('#wantDiv').html(html)
+    }
+
+    function doLogout(){
+      launchPostReq('logout', loadPage)
+    }
+
+    // on start-up, populate user-specific info
+    $(document).ready(function(){
+      // grab user ID from URL FIXME clean this up
+      var ID = decodeURIComponent(
+                 window.location.search.substring(1).split('=')[1]);
+
+      if (ID > 0){
+        launchPostReq('User',      updateNameEmail, new argObj('id', ID));
+        launchPostReq('booksWant', updateBooksWant, new argObj('id', ID));
+        launchPostReq('booksHave', updateBooksHave, new argObj('id', ID));
       }
+    })
+  </script>
+</head>
 
-      // expect html table
-      function updateBooksHave(html){
-        $('#haveDiv').html(html)
-      }
+<body>
+  <a href='./index.html'> Home Page </a>
+  <a id='logoutLnk' href='#'> Log Out </a>
 
-      // expect html table
-      function updateBooksWant(html){
-        $('#wantDiv').html(html)
-      }
-
-      $(document).ready(function(){
-        // grab user ID from URL FIXME clean this up
-        var ID = decodeURIComponent(
-                   window.location.search.substring(1).split('=')[1]);
-
-        if (ID > 0){
-          launchPostReq('User',      updateNameEmail, new argObj('id', ID));
-          launchPostReq('booksWant', updateBooksWant, new argObj('id', ID));
-          launchPostReq('booksHave', updateBooksHave, new argObj('id', ID));
-        }
-      })
-    </script>
-  </head>
-  
-  <body>
-    <a href='./index.html'> Home Page </a>
   <h3> User Profile </h3>
   <div id='nameDiv'> Name  </div><br>
   <div id='mailDiv'> Email </div><br>
@@ -46,25 +54,32 @@
   <div id='wantDiv'></div>
   <p> Have Table <p>
   <div id='haveDiv'></div>
+
   <!-- add books you have -->
   <div>
     <p> Enter a book you have </p>
     <br>
     <form action="">
-      Title : <input type="text" name="title"><br>
-      Author : <input type="text" name="author"><br>
-      ISBN : <input type="text" name="isbn"><br>
+      Title: <input type="text" name="title"><br>
+      Author: <input type="text" name="author"><br>
+      ISBN: <input type="text" name="isbn"><br>
       <button name="data" type="button" id="wantBtn">Submit</button>
     </form>
   </div>
+
   <!-- add books you want -->
   <p>Enter a book you want</p>
   <br>
   <form action="">
-    Title : <input type="text" name="title"><br>
-    Author : <input type="text" name="author"><br>
-    ISBN : <input type="text" name="isbn"><br>
+    Title: <input type="text" name="title"><br>
+    Author: <input type="text" name="author"><br>
+    ISBN: <input type="text" name="isbn"><br>
     <button name="data" type="button" id="haveButton">Submit</button>  
   </form>
-  </body>
+
+  <!-- event handlers -->
+  <script language='javascript'>
+    $('#logoutLnk').click(function(ev){ doLogout() })
+  </script>
+</body>
 </html>

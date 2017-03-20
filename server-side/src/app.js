@@ -42,7 +42,19 @@ app.get('/search',function(req,res){
 	sql.getBooks(req)
 })
 
-// session part
+app.post('/loginpage', function(req, res){
+  var url
+  var ID = req.session.userid
+  if (ID == undefined)
+    url = '/login.html'
+  else if (ID == 0)
+    url = '/login.html'
+  else
+    url = '/profile.html?id=' + ID
+
+  res.send(url)
+})
+
 app.post('/login',function(req,res){
 	sql.once('loggedin',function(msg){
     if (msg < 0){
@@ -57,6 +69,13 @@ app.post('/login',function(req,res){
 	})
 	sql.login(req.body.email, req.body.pword)
 })
+
+app.post('/logout',function(req,res){
+	req.session.reset()
+	req.session.msg = 'Logged out'
+	return res.send('/')
+})
+
 
 app.post('/signup',function(req,res){
 
@@ -80,13 +99,6 @@ app.get('/getUser',function(req,res){
   var url = '/profile.html?id=' + req.session.userid
   console.log(url)
 	return res.send(url)
-})
-
-
-app.get('/logout',function(req,res){
-	req.session.reset()
-	req.session.msg = 'Logged out'
-	return res.redirect('/')
 })
 
 app.get('/personal',function(req,res){
@@ -120,6 +132,15 @@ app.post('/booksHave',function(req,res){
 		res.send(html)
 	})
 	sql.booksHave(ID)
+})
+
+app.post('/profile', function(req, res){
+  console.log('request to profile')
+  var ID = req.session.userid
+  if (ID == undefined)
+    ID = 0
+  var url = '/profile.html?id=' + ID
+  res.send(url)
 })
 
 app.listen(8080,function(){

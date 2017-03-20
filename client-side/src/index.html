@@ -9,11 +9,50 @@
 
   <script src='http://code.jquery.com/jquery-3.1.0.js'></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <script type='text/javascript' src='launchReq.js'></script>
-
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <!--   <link rel="stylesheet" href="style.css">
  -->
+
+  <script type='text/javascript' src='aux.js'></script>
+  <script type='text/javascript' src='launchReq.js'></script>
+  <script language='javascript'>
+    //dumb
+    function updateSearchResults(arg){
+      $('#resultsDiv').html(arg);
+    }
+
+    function doLoginLink(){
+      launchPostReq('loginpage', loadPage)
+    }
+
+    function doProfileLink(){
+      launchPostReq('profile', loadPage)
+    }
+
+    // Parse input fields and launch GET request
+    // input:  none
+    // output: none
+    // sidefx: launches asynchronous GET request
+    function doSearch(){
+      var title  = new argObj('title',  $('#searchInp_title' ).val())
+      var author = new argObj('author', $('#searchInp_author').val())
+      var isbn   = new argObj('isbn',   $('#searchInp_isbn'  ).val())
+      launchGetReq('search', updateSearchResults, title, author, isbn)
+    }
+
+    // Wrapper for search clicking
+    function wrapClick(ev){
+      ev.preventDefault()
+      doSearch()
+    }
+
+    // Wrapper for search entering
+    function wrapKeyup(ev){
+      ev.preventDefault()
+      if (ev.keyCode == 13) // enter
+        $('#searchBtn').click()
+    }
+  </script>
 </header>
 
 <body>
@@ -32,8 +71,8 @@
 
       <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-          <li><a href="login.html">Log in</a></li>
-          <li><a href="profile.html">Edit Profile</a></li>
+          <li><a id='loginLnk'   href="#">Log in</a></li>
+          <li><a id='profileLnk' href='#'>Edit Profile</a></li>
         </ul>
       </div><!--/.navbar-collapse -->
 
@@ -53,6 +92,7 @@
       <input type='text' id='searchInp_isbn'   placeholder='ISBN'/>
 
       <button id='searchBtn'>Search!</button>
+      <br>
       <a href='./adv-search.html'>Advanced Search</a> 
 
       <div id="resultsDiv"></div>
@@ -60,35 +100,8 @@
   </div><!--.jumbotron-->
 
   <script language='javascript'>
-  //dumb
-  function updateSearchResults(arg){
-    $('#resultsDiv').html(arg);
-  }
-
-  // Parse input fields and launch GET request
-  // input:  none
-  // output: none
-  // sidefx: launches asynchronous GET request
-  function doSearch(){
-    var title  = new argObj('title',  $('#searchInp_title' ).val())
-    var author = new argObj('author', $('#searchInp_author').val())
-    var isbn   = new argObj('isbn',   $('#searchInp_isbn'  ).val())
-    launchGetReq('search', updateSearchResults, title, author, isbn)
-  }
-
-  // Wrapper for search clicking
-  function wrapClick(ev){
-    ev.preventDefault()
-    doSearch()
-  }
-
-  // Wrapper for search entering
-  function wrapKeyup(ev){
-    ev.preventDefault()
-    if (ev.keyCode == 13) // enter
-      $('#searchBtn').click()
-  }
-
+    $('#loginLnk'        ).click(function(ev){ doLoginLink() })
+    $('#profileLnk'      ).click(function(ev){ doProfileLink() })
     $('#searchInp_title' ).keyup(function(ev){ wrapKeyup(ev) })
     $('#searchInp_author').keyup(function(ev){ wrapKeyup(ev) })
     $('#searchInp_isbn'  ).keyup(function(ev){ wrapKeyup(ev) })
