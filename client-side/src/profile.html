@@ -44,6 +44,7 @@
       var authorInp = '#' + trx + 'AuthorInp'
       var isbnInp   = '#' + trx + 'IsbnInp'
       launchPostReq('addBook', loadPage, new argObj('id', ID), 
+                               new argObj('trx', trx), 
                                new argObj('title',  $(titleInp ).val()), 
                                new argObj('author', $(authorInp).val()), 
                                new argObj('isbn'  , $(isbnInp  ).val())
@@ -110,7 +111,6 @@
 
   <!-- event handlers -->
   <script language='javascript'>
-    alert('here')
     // home page link here
     $('#logoutLnk'    ).click(function(ev){ doLogout() })
     $('#haveBtn'      ).click(function(ev){ doAddBook('have') })

@@ -123,7 +123,7 @@ Database.prototype.booksHave = function(ID){
   var self = this;
   var userID = ID;
   var html = '<table><tr>'
-           + '<th>Title</th><th>Author</th><th>ISBN</th>'
+           + '<th>Title</th><th>Author</th><th>ISBN</th><th></th>'
            + '</tr>'
   var qry = 'select * from books where ownerid=' + db.escape(userID)
           + 'and status=\'1\''
@@ -134,6 +134,7 @@ Database.prototype.booksHave = function(ID){
       html += '<td>' + rows[j].title  + '</td>'
       html += '<td>' + rows[j].author + '</td>'
       html += '<td>' + rows[j].isbn   + '</td>'
+      html += '<td><a href=\'#\'>' + rows[j].bookid + '</a></td>'
       html += '</tr>'
     }
     html += '</table>'
@@ -195,10 +196,10 @@ Database.prototype.addBook = function(userid, title, author, isbn, sts){
           + ' values ('
           + '\'' + title  + '\','
           + '\'' + author + '\','
-          + '\'' + isbn   + '\','
           + '\'' + userid + '\','
+          + '\'' + isbn   + '\','
           + '\'' + sts    + '\''
-          + ')'
+          + ');'
   console.log(qry)
   db.query(qry, function(err, rows, fields){
     if (err)

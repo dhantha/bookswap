@@ -155,8 +155,27 @@ app.post('/addBook', function(req, res){
     return
   }
 
-  sql.once('add_book', function(req, res){
-    res.send(url)
+  sql.once('add_book', function(){
+    res.send(URL)
+  })
+  sql.addBook(ID, req.body.title, req.body.author, req.body.isbn, sts)
+})
+
+app.post('/rmBook', function(req, res){
+  var ID = req.body.id
+  var URL = '/profile.html?id=' + ID
+  var sts
+  if (req.body.trx == 'have')
+    sts = 1
+  else if (req.body.trx == 'want')
+    sts = 0
+  else{
+    res.send(URL)
+    return
+  }
+
+  sql.once('rm_book', function(){
+    res.send(URL)
   })
   sql.addBook(ID, req.body.title, req.body.author, req.body.isbn, sts)
 })
