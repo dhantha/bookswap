@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script src='http://code.jquery.com/jquery-3.1.0.js'></script>
     <script type='text/javascript' src='launchReq.js'></script>
     <script language='javascript'>
@@ -28,15 +28,17 @@
         var ID = decodeURIComponent(
                    window.location.search.substring(1).split('=')[1]);
 
-        launchPostReq('User',      updateNameEmail, new argObj('id', ID));
-        launchPostReq('booksWant', updateBooksWant, new argObj('id', ID));
-        launchPostReq('booksHave', updateBooksHave, new argObj('id', ID));
+        if (ID > 0){
+          launchPostReq('User',      updateNameEmail, new argObj('id', ID));
+          launchPostReq('booksWant', updateBooksWant, new argObj('id', ID));
+          launchPostReq('booksHave', updateBooksHave, new argObj('id', ID));
+        }
       })
     </script>
-	</head>
-	
-	<body>
-		<a href='./index.html'> Home Page </a>
+  </head>
+  
+  <body>
+    <a href='./index.html'> Home Page </a>
   <h3> User Profile </h3>
   <div id='nameDiv'> Name  </div><br>
   <div id='mailDiv'> Email </div><br>
@@ -64,5 +66,5 @@
     ISBN : <input type="text" name="isbn"><br>
     <button name="data" type="button" id="haveButton">Submit</button>  
   </form>
-	</body>
+  </body>
 </html>
