@@ -1,8 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var Database = require("../db/database");
-var session = require('client-sessions');
-var fs = require('fs');
 
 var app = express();
 app.use(express.static("../../client-side/src"));
@@ -10,13 +8,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
 var sql = new Database();
-var sk = fs.readFileSync('../sessionkey.txt','utf8');
-app.use(session({
-	cookieName: 'session',
-	secret:sk,
-	duration: 30*6*1000,
-	activeDuration: 5*60*1000,
-}));
+
 app.use(function(req,res,next){	
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8888');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -38,16 +30,16 @@ app.get('/search',function(req,res){
 //session part
 app.post('/login',function(req,res){
 	sql.once('loggedin',function(msg){
-		if(msg==0){
-			req.session.msg = "Invalid login";
+		if(msg==1){
+			req.session.userid=req.body.username;
+			return res.redirect('/getUser')
 		}
 		else{
-			req.session.userid=msg[0].id;
-			console.log(req.session.userid);
-			return res.redirect('/getUser');
+			req.session.msg = "Invalid login";
+			return res.redirect('/');
 		}
 	});
-	console.log(req.body.password);
+
 	sql.login(req.body.username,req.body.password);
 });
 
@@ -66,9 +58,12 @@ app.post('/signup',function(req,res){
 });
 
 app.get('/getUser',function(req,res){
-	var Id = req.session.userid;
-	//res.status(200).send(id.toString());
-	res.send(Id.toString());
+	if(req.session.userid){
+		req.session.msg='NO userid';
+		return res.redirect('/');
+	}
+
+	return res.redirect('/personal');
 });
 
 
@@ -79,7 +74,11 @@ app.get('/logout',function(req,res){
 });
 
 app.get('/personal',function(req,res){
-	
+	var Id = req.session.userid;
+	sql.once('user_profile',function(user){
+		res.json(user);
+	});
+	sql.getUser(Id);
 });
 // populate the user page
 app.post('/User',function(req,res){
@@ -100,7 +99,7 @@ app.post('/booksWant',function(req,res){
 
 app.post('/booksHave',function(req,res){
 	var Id = req.body.ID;
-	sql.once('books_have',function(html){
+	sql.onec('books_have',function(html){
 		res.send(html);
 	});
 	sql.booksHave(Id);

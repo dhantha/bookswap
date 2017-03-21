@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 rootsqlpw
-=======
-!R5bacacr0
->>>>>>> 6d7318cf340be42ea8ab9ac5eaed920cd4e2dc6f

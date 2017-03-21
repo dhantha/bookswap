@@ -11,27 +11,11 @@
   <script type='text/javascript' src='launchPostReq.js'></script>
   <script language='javascript'>
     function doLogin(){
-      var email = $('#emailInp').val();
-      var pword = $('#pwordInp').val();
-	  var URL = "http://localhost:8080/login";
-	  var formdata = {username: email,password: pword};
-	  $.ajax({
-					type:"POST",
-					url: URL,
-					dataType:"text",
-					data:formdata,
-					success:function(msg){
-						var str = "porfile.html?"+msg;
-						document.getElementById("test").innerHTML = str;
-						window.location.href = str;
-						},
-					error: function (xhr, ajaxOptions, thrownError){
-						console.log("error");	
-					}
-					
-		});
+      var email = $('#emailInp').val()
+      var pword = $('#pwordInp').val()
+
       /* dumb */
-      //alert('Logging `' + email + '\' in with password `' + pword + '\'')
+      alert('Logging `' + email + '\' in with password `' + pword + '\'')
     }
 
     function wrapClick(ev){
@@ -54,7 +38,6 @@
     <input type='text' name='emailInp' id='emailInp' placeholder='email'/>
     <input type='text' name='pwordInp' id='pwordInp' placeholder='password'/>
     <button id='loginBtn'> Login </button>
-	<div id='test'></div>
     <script>
       $('#emailInp').keyup(function(ev){ wrapKeyup(ev) })
       $('#pwordInp').keyup(function(ev){ wrapKeyup(ev) })
