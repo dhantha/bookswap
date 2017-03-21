@@ -15,10 +15,10 @@ var db = mysql.createConnection({
 
 db.connect(function(err){
   if(err){
-    console.log("Error connecting to the db: ",err);
+    console.log('Error connecting to the db: ',err);
   }
   else{
-    console.log("Connected to db");
+    console.log('Connected to db');
   }
 });
 
@@ -30,46 +30,58 @@ utils.inherits(Database, EventEmitter);
 
 Database.prototype.getBooks = function(req){
   var self = this;
-  var html = "";
+  var html = '';
   var cols = [];
 
   var title = req.query.title;
   var author = req.query.author;
   var isbn = req.query.isbn;
   
-  console.log('got title',title);
-
-  var qry = "select * from books,users where "; 
-  if(req.query.title)  qry += "books.title regexp "  + db.escape(title);
-  if(req.query.author) qry += "books.author regexp " + db.escape(author);
-  if(req.query.isbn)   qry += "books.isbn="          + db.escape(isbn);
-  qry +=  " and books.status='1' and books.ownerid=users.id";
+  var qry = 'SELECT * FROM books,users WHERE'; 
+  var tmp = ''
+  if (req.query.title){
+    if (tmp.length != 0)
+      tmp += ' AND '
+    tmp += ' books.title regexp '  + db.escape(title);
+  }
+  if (req.query.author){
+    if (tmp.length != 0)
+      tmp += ' AND'
+    tmp += ' books.author regexp ' + db.escape(author);
+  }
+  if (req.query.isbn){
+    if (tmp.length != 0)
+      tmp += ' AND '
+    tmp += ' books.isbn='          + db.escape(isbn);
+  }
+  qry += tmp
+  qry +=  ' and books.status=\'1\' and books.ownerid=users.id';
   
-  console.log('query',qry);
+  console.log(qry);
   
   db.query(qry, function(err,rows,fields){
     if(err) throw err;
     //
-    html += "<table><tr>";
-    html += "<th>Title</th><th>Author</th><th>ISBN</th><th>Owner</th>";
-    html += "<book>";
+    html += '<table><tr>';
+    html += '<th>Title</th><th>Author</th><th>ISBN</th><th>Owner</th>';
+    html += '<book>';
 
 //    var result = json.parse(json.stringify(rows));
     var result = rows;
     console.log(rows.length);
     for(var j=0; j < rows.length; j++){
-      html += "<tr>";
-      html += "<td>" + result[j].title + "</td>";
-      html += "<td>" + result[j].author + "</td>";
-      html += "<td>" + result[j].isbn + "</td>";
-      html += "<td><a href=\"profile.html?id=" 
-            + result[j].ownerid + "\">" 
+      html += '<tr>';
+      html += '<td>' + result[j].title + '</td>';
+      html += '<td>' + result[j].author + '</td>';
+      html += '<td>' + result[j].isbn + '</td>';
+      html += '<td><a href=\'profile.html?id=' 
+            + result[j].ownerid + '\'>' 
             + result[j].name 
-            + "</a></td>";
-//    html += "<td><a href=\"profile.html\">" + result[j].name + "</a></td>";
-      html += "</tr>";
+            + '</a></td>';
+//    html += '<td><a href=\'profile.html\'>' + result[j].name + '</a></td>';
+      html += '</tr>';
     }
-    html += "</table>";
+    html += '</table>';
     
     self.emit('search',html);
 
