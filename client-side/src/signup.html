@@ -1,0 +1,54 @@
+<!-- BookSwap -->
+<!DOCTYPE HTML>
+
+<html>
+<header>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+  <title> Drexel BookSwap </title>
+  <!-- include jQuery -->
+  <script src='http://code.jquery.com/jquery-3.1.0.js'></script>
+  <script type='text/javascript' src='aux.js'></script>
+  <script type='text/javascript' src='launchReq.js'></script>
+  <script language='javascript'>
+    function doSignup(){
+      var uname = $('#unameInp').val()
+      var email = $('#emailInp').val()
+      var pword = $('#pwordInp').val()
+
+      // postObjs to pass uname and password to db
+      // similar to argObjs->getObjs on client side
+      launchPostReq('signup', loadPage, 
+                      new argObj('uname', uname), 
+                      new argObj('email', email), 
+                      new argObj('pword', pword)
+                   )
+    }
+
+    function wrapClick(ev){
+      ev.preventDefault()
+      doSignup()
+    }
+
+    function wrapKeyup(ev){
+      ev.preventDefault()
+      if (ev.keyCode == 13) // enter
+        $('#loginBtn').click()
+    }
+  </script>
+</header>
+
+<body>
+  <h3> User Signup </h3>
+  <!-- input box and button -->
+  <input type='text' name='unameInp' id='unameInp' placeholder='username'/>
+  <input type='text' name='emailInp' id='emailInp' placeholder='email'/>
+  <input type='text' name='pwordInp' id='pwordInp' placeholder='password'/>
+  <button id='signupBtn'> Sign Up </button>
+  <script>
+    $('#unameInp' ).keyup(function(ev){ wrapKeyup(ev) })
+    $('#emailInp' ).keyup(function(ev){ wrapKeyup(ev) })
+    $('#pwordInp' ).keyup(function(ev){ wrapKeyup(ev) })
+    $('#signupBtn').click(function(ev){ wrapClick(ev) })
+  </script>
+</body>
+</html>

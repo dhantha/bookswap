@@ -16,16 +16,20 @@
   <script type='text/javascript' src='aux.js'></script>
   <script type='text/javascript' src='launchReq.js'></script>
   <script language='javascript'>
-    //dumb
+    // dumb
     function updateSearchResults(arg){
       $('#resultsDiv').html(arg);
     }
 
-    function doLoginLink(){
+    function doSignup(){
+      launchPostReq('signuppage', loadPage)
+    }
+
+    function doLogin(){
       launchPostReq('loginpage', loadPage)
     }
 
-    function doProfileLink(){
+    function doProfile(){
       launchPostReq('profile', loadPage)
     }
 
@@ -71,6 +75,7 @@
 
       <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
+          <li><a id='signupLnk' href="#">Sign Up</a></li>
           <li><a id='loginLnk'   href="#">Log in</a></li>
           <li><a id='profileLnk' href='#'>Edit Profile</a></li>
         </ul>
@@ -100,8 +105,9 @@
   </div><!--.jumbotron-->
 
   <script language='javascript'>
-    $('#loginLnk'        ).click(function(ev){ doLoginLink() })
-    $('#profileLnk'      ).click(function(ev){ doProfileLink() })
+    $('#signupLnk'       ).click(function(ev){ doSignup() })
+    $('#loginLnk'        ).click(function(ev){ doLogin() })
+    $('#profileLnk'      ).click(function(ev){ doProfile() })
     $('#searchInp_title' ).keyup(function(ev){ wrapKeyup(ev) })
     $('#searchInp_author').keyup(function(ev){ wrapKeyup(ev) })
     $('#searchInp_isbn'  ).keyup(function(ev){ wrapKeyup(ev) })

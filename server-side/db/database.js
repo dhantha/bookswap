@@ -2,7 +2,6 @@ var EventEmitter = require('events').EventEmitter;
 var utils = require('util');
 var bodyParser = require('body-parser');
 
-
 var fs = require('fs');
 var pw = fs.readFileSync('../pw.txt','utf8').trim();
 
@@ -183,18 +182,35 @@ Database.prototype.signup = function(username,email,password){
       return 0;
     }
     else{
-      if (rows.lenth>1)
-        self.emit('duplicate',0);
+      if (0 < rows.length)
+        self.emit('duplicate', 0);
       else{
-        var str = 'INSERT INTO Users (name,email,password) valuse (\''+username+ '\',\''+email+ '\',PASSWORD(\''+password+'\'));';
-        con.query(str,function(err,rows,fields){
+        qry = 'INSERT INTO users (name, email, password) VALUES ('
+            + db.escape(username) + ', '
+            + db.escape(email)    + ',' 
+            + 'PASSWORD('
+            + db.escape(password) 
+            +'));'
+        console.log(qry)
+        db.query(qry, function(err, rows, fields){
           if (err){
-            console.log('Error during query processing');
-            return 0;
+            console.log('Error during query processing')
+            return 0
           }
-          else 
-            self.emit('duplicate',1);
-        });
+          else{ 
+            qry = 'SELECT id FROM users WHERE '
+                + 'name=' + db.escape(username) + ' AND '
+                + 'email=' + db.escape(email) + ';'
+            console.log(qry)
+            db.query(qry, function(err, rows, fields){
+              if (err)
+                throw err
+              else{
+                self.emit('duplicate', rows[0].id)
+              }
+            })
+          }
+        })
       }
     }
   });

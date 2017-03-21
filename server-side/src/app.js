@@ -17,7 +17,7 @@ app.use(session({
 
 var sql = new Database()
 
-app.use(function(req,res,next){	
+app.use(function(req,res,next){ 
     res.setHeader('Access-Control-Allow-Origin', 
                   'http://localhost:8080')
     res.setHeader('Access-Control-Allow-Methods', 
@@ -28,17 +28,30 @@ app.use(function(req,res,next){
                    true)
     res.setHeader('X-Content-Type-Options', 
                   'nosniff')
-    next();	
+    next(); 
 })
 
 
 app.get('/search',function(req,res){
-	sql.once('search',function(html){
-		console.log('got search emit with:',html)
-		res.send(html)
-	})
+  sql.once('search',function(html){
+    console.log('got search emit with:',html)
+    res.send(html)
+  })
 
-	sql.getBooks(req)
+  sql.getBooks(req)
+})
+
+app.post('/signuppage', function(req, res){
+  var url
+  var ID = req.session.userid
+  if (ID == undefined)
+    url = '/signup.html'
+  else if (ID == 0)
+    url = '/signup.html'
+  else
+    url = '/profile.html?id=' + ID
+
+  res.send(url)
 })
 
 app.post('/loginpage', function(req, res){
@@ -55,66 +68,66 @@ app.post('/loginpage', function(req, res){
 })
 
 app.post('/login',function(req,res){
-	sql.once('loggedin',function(msg){
+  sql.once('loggedin',function(msg){
     if (msg < 0){
-			req.session.msg = "Invalid login"
-			return res.redirect('/')
-		}
-		else{
+      req.session.msg = "Invalid login"
+      return res.redirect('/')
+    }
+    else{
       console.log('here: ' + req.body.email)
-			req.session.userid = msg
-			return res.redirect('/getUser')
-		}
-	})
-	sql.login(req.body.email, req.body.pword)
+      req.session.userid = msg
+      return res.redirect('/getUser')
+    }
+  })
+  sql.login(req.body.email, req.body.pword)
 })
 
 app.post('/logout',function(req,res){
-	req.session.reset()
-	req.session.msg = 'Logged out'
-	return res.send('/')
+  req.session.reset()
+  req.session.msg = 'Logged out'
+  return res.send('/')
 })
 
 
 app.post('/signup',function(req,res){
-
-	sql.once('duplicate',function(msg){
-		if(msg==0){
-			res.send(0)
-		}
-		else{
-			res.send(1)
-		}
-	})
-	sql.signup(req.body.name, req.body.email, req.body.password)
+  sql.once('duplicate', function(msg){
+    if(msg == 0){
+      res.send('/login.html')
+    }
+    else{
+      url = '/profile.html?id=' + msg
+      res.send(url)
+    }
+  })
+  sql.signup(req.body.uname, req.body.email, req.body.pword)
 })
 
 app.get('/getUser',function(req,res){
-	if(!req.session.userid){
-		req.session.msg='No userid, no access'
-		return res.redirect('/')
-	}
+  if(!req.session.userid){
+    req.session.msg='No userid, no access'
+    return res.redirect('/')
+  }
 
   var url = '/profile.html?id=' + req.session.userid
   console.log(url)
-	return res.send(url)
+  return res.send(url)
 })
 
 app.get('/personal',function(req,res){
-	var Id = req.session.userid
-	sql.once('user_profile',function(user){
-		res.json(user)
-	})
-	sql.getUser(Id)
+  var Id = req.session.userid
+  sql.once('user_profile',function(user){
+    res.json(user)
+  })
+  sql.getUser(Id)
 })
 
 // populate the user page
 app.post('/User',function(req,res){
-	var ID = req.body.id
-	sql.once('user_profile',function(user){
-		res.json(user)
-	})
-	sql.getUser(ID)
+  var ID = req.body.id
+  sql.once('user_profile',function(user){
+    res.json(user)
+  })
+  sql.getUser(ID)
 })
 
 app.post('/profile', function(req, res){
@@ -127,19 +140,19 @@ app.post('/profile', function(req, res){
 })
 
 app.post('/booksWant',function(req,res){
-	var ID = req.body.id
-	sql.once('books_want',function(html){
-		res.send(html)
-	})
-	sql.booksWant(ID)
+  var ID = req.body.id
+  sql.once('books_want',function(html){
+    res.send(html)
+  })
+  sql.booksWant(ID)
 })
 
 app.post('/booksHave',function(req,res){
-	var ID = req.body.id
-	sql.once('books_have',function(html){
-		res.send(html)
-	})
-	sql.booksHave(ID)
+  var ID = req.body.id
+  sql.once('books_have',function(html){
+    res.send(html)
+  })
+  sql.booksHave(ID)
 })
 
 app.post('/addBook', function(req, res){
@@ -193,5 +206,5 @@ app.post('/rmBook', function(req, res){
 })
 
 app.listen(8080,function(){
-	console.log('listening on port 8080')
+  console.log('listening on port 8080')
 })
