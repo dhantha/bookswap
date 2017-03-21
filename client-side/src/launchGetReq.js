@@ -13,8 +13,7 @@ function launchGetReq(){
   if (arguments.length < 2)
     return;
 
-  // var doCb = arguments[1]
-  // console.log('doCB',doCB);
+  var doCb = arguments[1]
 
   var URL
   endpoint = arguments[0]
@@ -31,22 +30,22 @@ function launchGetReq(){
           URL += '&'
       }
     }
-  }//end if
+  }
   else{
     console.log('bad endpoint: ' + endpoint)
     return
   }
 
   $.ajax({
-   type: 'GET', 
-   url : URL, 
-   success: function(msg){
-              console.log('launchGetReq success')
-              updateSearchResults(msg)
-            }, 
-   error: function(jgXHR, textStatus, errorThrown){
-            console.log('launchGetReq error')
-            alert('Error: ' + textStatus + '\n' + errorThrown)
-          }
-  })//end ajax
-}//end launch get req
+       type: 'GET', 
+       url : URL, 
+       success: function(msg){
+                  console.log('launchGetReq success')
+                  doCb(msg)
+                }, 
+       error: function(jgXHR, textStatus, errorThrown){
+                console.log('launchGetReq error')
+                alert('Error: ' + textStatus + '\n' + errorThrown)
+              }
+      })
+}
