@@ -8,6 +8,7 @@
   -->
 
 <html>
+<<<<<<< HEAD
 <head>
   <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
   <script src='http://code.jquery.com/jquery-3.1.0.js'></script>
@@ -98,18 +99,53 @@
   <a href='/'> Home Page </a>
   <a id='logoutLnk' href='#'> Log Out </a>
 
+=======
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<<<<<<< HEAD
+    <script src='http://code.jquery.com/jquery-3.1.0.js'></script>
+    <script language='javascript'>
+      // expect object from json
+      function updateNameEmail(data){
+        $('#nameDiv').innerHTML(data.name)
+        $('#mailDiv').innerHTML(data.email)
+      }
+
+      // expect html table
+      function updateBooksHave(html){
+        $('#haveDiv').innerHTML(html)
+      }
+
+      // expect html table
+      function updateBooksWant(html){
+        $('#wantDiv').innerHTML(html)
+      }
+    </script>
+=======
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">	</script>
+		<script src="user_profile.js"></script>
+>>>>>>> parent of f37e67b... login update
+	</head>
+	
+	<body>
+		<a href='./index.html'> Home Page </a>
+>>>>>>> master
   <h3> User Profile </h3>
   <div id='nameDiv'> Name  </div><br>
   <div id='mailDiv'> Email </div><br>
 
   <p> Books I Have <p>
   <div id='haveDiv'></div>
+<<<<<<< HEAD
   <button id='haveRmBtn'> Delete </button>
 
   <p> Books I Want <p>
   <div id='wantDiv'></div>
   <button id='wantRmBtn'> Delete </button>
 
+=======
+<<<<<<< HEAD
+>>>>>>> master
   <!-- add books you have -->
   <div>
     <p> Have a book? </p>
@@ -131,6 +167,7 @@
     ISBN:   <input id='wantIsbnInp'   type='text'><br>
     <button id='wantBtn' type='button'>Submit</button>  
   </form>
+<<<<<<< HEAD
 
   <!-- event handlers -->
   <script language='javascript'>
@@ -149,4 +186,9 @@
     $('#wantRmBtn').click(function(ev){ doRmBook('want') })
   </script>
 </body>
+=======
+=======
+>>>>>>> parent of 6d7318c... fix merge
+	</body>
+>>>>>>> master
 </html>

@@ -33,6 +33,7 @@ app.use(function(req,res,next){
 
 
 app.get('/search',function(req,res){
+<<<<<<< HEAD
   sql.once('search',function(html){
     res.send(html)
   })
@@ -65,6 +66,11 @@ app.post('/loginpage', function(req, res){
 
   res.send(url)
 })
+=======
+	sql.once('search',function(html){
+		res.send(html);
+	});
+>>>>>>> master
 
 app.post('/login',function(req,res){
   sql.once('loggedin',function(msg){

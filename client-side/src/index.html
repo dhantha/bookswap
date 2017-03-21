@@ -4,9 +4,10 @@
 <html>
 <header>
   <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
-  <title>Drexel Book Swap</title>
+  <title> Drexel BookSwap </title>
   <meta name="viewport" content="width = device-width, initial-scale = 1">
 
+<<<<<<< HEAD
   <script src='http://code.jquery.com/jquery-3.1.0.js'></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -57,9 +58,16 @@
         $('#searchBtn').click()
     }
   </script>
+=======
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
+
+>>>>>>> master
 </header>
+<<<<<<< HEAD
 
 <body>
+<<<<<<< HEAD
   <nav class="navbar navbar-inverse navbar-static-top" style="margin:0;">
     <div class="container">
       <div class="navbar-header">
@@ -113,5 +121,291 @@
     $('#searchInp_isbn'  ).keyup(function(ev){ wrapKeyup(ev) })
     $('#searchBtn'       ).click(function(ev){ wrapClick(ev) })
   </script>
+=======
+<nav class="navbar navbar-inverse navbar-static-top" style="margin:0;">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+    <a class="navbar-brand" href="#">Drexel Book Swap</a>
+    </div><!--.navbar-header-->
+
+    <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+        <li><a href="login.html">Log in</a></li>
+        <li><a href="profile.html">Edit Profile</a></li>
+      </ul>
+    </div><!--/.navbar-collapse -->
+
+  </div><!--.container-->
+</nav>
+
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>Drexel Book Swap</h1>
+    <p>Book Swap is what you've wanted for a long time now: a centralized
+    spot for swappin' text! Cancel that online order, burn your library
+    card - reading's free from now on.</p>
+
+=======
+  <body>
+  
+  
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Drexel Book Swap</h1>
+	<p>BookSwap is what you've wanted for a long time now: a centralized
+      spot for swappin' text! Cancel that online order, burn your library
+      card - reading's free from now on.</p>
+<!--         <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+ -->      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+       </div>
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; 2016 Company, Inc.</p>
+      </footer>
+    </div> <!-- /container -->
+    <h3> What is BookSwap? </h3>
+
+
+    <br><br>
+    <a href='./login.html'  > User Login </a> <br>
+    <a href='./profile.html'> My Profile </a> 
+    <br><br>
+    <!-- input box and button -->
+    <input type='text' id='searchInp_title'  placeholder='Title'/>
+    <input type='text' id='searchInp_author' placeholder='Author'/>
+    <input type='text' id='searchInp_isbn'   placeholder='ISBN'/>
+    <br>
+    <button id='searchBtn'> Search! </button> <br>
+    <a href='./adv-search.html'> Advanced Search </a> 
+
+    <div id="searchResults"></div>
+
+
+
+  
+  <!-- include jQuery -->
+  <script src='http://code.jquery.com/jquery-3.1.0.js'></script>
+  <script type='text/javascript' src='./launchGetReq.js'></script>
+  <script language='javascript'>
+<<<<<<< Updated upstream
+=======
+    // dumb object to wrap GET arguments
+    // http://host:port/endpoint?name=val
+    function argObj(_name, _val){
+      this.name = _name
+      this.val  = _val
+    }
+
+    // Launch general GET request
+    // input:  endpoint (string), callback (function(arg)), argObjs...
+    // output: none
+    // sidefx: launches asynchronous GET request
+    function launchGetReq(){
+      if (arguments.length < 2)
+        return;
+
+      var doCb = arguments[1]
+
+      var URL
+      endpoint = arguments[0]
+      if (endpoint == 'search'){
+        URL = 'http://localhost:8080/' 
+           + endpoint 
+           + '?' 
+        for (var i = 2 ; i < arguments.length ; i++){
+          var obj
+          obj = arguments[i]
+          if (obj.val.length > 0){
+            URL += obj.name + '=' + encodeURIComponent(obj.val)
+            if (i != arguments.length - 1)
+              URL += '&'
+          }
+        }
+      }
+      else{
+        console.log('bad endpoint: ' + endpoint)
+        return
+      }
+
+      $.ajax({
+           type: 'GET', 
+           url : URL, 
+           success: function(msg){
+                      console.log('launchGetReq success')
+                      doCb(msg)
+                    }, 
+           error: function(jgXHR, textStatus, errorThrown){
+                    console.log('launchGetReq error')
+                    alert('Error: ' + textStatus + '\n' + errorThrown)
+                  }
+          })
+    }
+
+>>>>>>> Stashed changes
+    // dumb
+    function updateSearchResults(arg){
+      $('#resultsDiv').html(arg);
+    }
+
+    // Parse input fields and launch GET request
+    // input:  none
+    // output: none
+    // sidefx: launches asynchronous GET request
+    function doSearch(){
+      var title  = new argObj('title',  $('#searchInp_title' ).val())
+      var author = new argObj('author', $('#searchInp_author').val())
+      var isbn   = new argObj('isbn',   $('#searchInp_isbn'  ).val())
+      launchGetReq('search', updateSearchResults, title, author, isbn)
+    }
+
+    // Wrapper for search clicking
+    function wrapClick(ev){
+      ev.preventDefault()
+      doSearch()
+    }
+
+    // Wrapper for search entering
+    function wrapKeyup(ev){
+      ev.preventDefault()
+      if (ev.keyCode == 13) // enter
+        $('#searchBtn').click()
+    }
+  </script>
+
+<<<<<<< Updated upstream
+</header>
+  <body>
+    <h3> What is BookSwap? </h3>
+      BookSwap is what you've wanted for a long time now: a centralized
+      spot for swappin' text! Cancel that online order, burn your library
+      card - reading's free from now on.
+
+    <br><br>
+    <a href='./login.html'  > User Login </a> <br>
+    <a href='./profile.html'> My Profile </a> 
+    <br><br>
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of f37e67b... login update
+=======
+>>>>>>> parent of 6d7318c... fix merge
+=======
+>>>>>>> parent of 6d7318c... fix merge
+    <!-- input box and button -->
+    <input type='text' id='searchInp_title'  placeholder='Title'/>
+    <input type='text' id='searchInp_author' placeholder='Author'/>
+    <input type='text' id='searchInp_isbn'   placeholder='ISBN'/>
+    <br>
+    <button id='searchBtn'> Search! </button> <br>
+    <a href='./adv-search.html'> Advanced Search </a> 
+
+    <div id="resultsDiv"></div>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+  </div><!--.container-->
+</div><!--.jumbotron-->
+
+<script src='http://code.jquery.com/jquery-3.1.0.js'></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script type='text/javascript' src='launchGetReq.js'></script>
+
+<script language='javascript'>
+//dumb
+function updateSearchResults(arg){
+  $('#resultsDiv').html(arg);
+}
+
+// Parse input fields and launch GET request
+// input:  none
+// output: none
+// sidefx: launches asynchronous GET request
+function doSearch(){
+  var title  = new argObj('title',  $('#searchInp_title' ).val())
+  var author = new argObj('author', $('#searchInp_author').val())
+  var isbn   = new argObj('isbn',   $('#searchInp_isbn'  ).val())
+  launchGetReq('search', updateSearchResults, title, author, isbn)
+}
+
+// Wrapper for search clicking
+function wrapClick(ev){
+  ev.preventDefault()
+  doSearch()
+}
+
+// Wrapper for search entering
+function wrapKeyup(ev){
+  ev.preventDefault()
+  if (ev.keyCode == 13) // enter
+    $('#searchBtn').click()
+}
+
+  $('#searchInp_title' ).keyup(function(ev){ wrapKeyup(ev) })
+  $('#searchInp_author').keyup(function(ev){ wrapKeyup(ev) })
+  $('#searchInp_isbn'  ).keyup(function(ev){ wrapKeyup(ev) })
+  $('#searchBtn'       ).click(function(ev){ wrapClick(ev) })
+</script>
+
+>>>>>>> master
 </body>
+=======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> parent of 6d7318c... fix merge
+=======
+>>>>>>> parent of 6d7318c... fix merge
+=======
+=======
+>>>>>>> Stashed changes
+>>>>>>> parent of f37e67b... login update
+    <script>
+      $('#searchInp_title' ).keyup(function(ev){ wrapKeyup(ev) })
+      $('#searchInp_author').keyup(function(ev){ wrapKeyup(ev) })
+      $('#searchInp_isbn'  ).keyup(function(ev){ wrapKeyup(ev) })
+      $('#searchBtn').click(function(ev){ wrapClick(ev) })
+    </script>
+    
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  
+  </body>
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of f37e67b... login update
+=======
+>>>>>>> parent of 6d7318c... fix merge
+=======
+>>>>>>> parent of 6d7318c... fix merge
 </html>
