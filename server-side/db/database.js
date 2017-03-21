@@ -169,8 +169,12 @@ Database.prototype.signup = function(username,email,password){
 >>>>>>> parent of 6d7318c... fix merge
 =======
 				var str = 'INSERT INTO Users (name,email,password) valuse (\''+username+ '\',\''+email+ '\',\''+password+'\');';
+<<<<<<< HEAD
 				db.query(str,function(err,rows,fields){
 >>>>>>> parent of 6d7318c... fix merge
+=======
+				con.query(str,function(err,rows,fields){
+>>>>>>> parent of f37e67b... login update
 					if (err){
 						console.log('Error during query processing');
 						return 0;
