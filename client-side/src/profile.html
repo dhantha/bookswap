@@ -4,12 +4,24 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<<<<<<< HEAD
     <script src='http://code.jquery.com/jquery-3.1.0.js'></script>
-=======
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">	</script>
-		<script src="user_profile.js"></script>
->>>>>>> parent of f37e67b... login update
+    <script language='javascript'>
+      // expect object from json
+      function updateNameEmail(data){
+        $('#nameDiv').innerHTML(data.name)
+        $('#mailDiv').innerHTML(data.email)
+      }
+
+      // expect html table
+      function updateBooksHave(html){
+        $('#haveDiv').innerHTML(html)
+      }
+
+      // expect html table
+      function updateBooksWant(html){
+        $('#wantDiv').innerHTML(html)
+      }
+    </script>
 	</head>
 	
 	<body>
@@ -21,5 +33,25 @@
   <div id='wantDiv'></div>
   <p> Have Table <p>
   <div id='haveDiv'></div>
+  <!-- add books you have -->
+  <div>
+    <p> Enter a book you have </p>
+    <br>
+    <form action="">
+      Title : <input type="text" name="title"><br>
+      Author : <input type="text" name="author"><br>
+      ISBN : <input type="text" name="isbn"><br>
+      <button name="data" type="button" id="wantBtn">Submit</button>
+    </form>
+  </div>
+  <!-- add books you want -->
+  <p>Enter a book you want</p>
+  <br>
+  <form action="">
+    Title : <input type="text" name="title"><br>
+    Author : <input type="text" name="author"><br>
+    ISBN : <input type="text" name="isbn"><br>
+    <button name="data" type="button" id="haveButton">Submit</button>  
+  </form>
 	</body>
 </html>

@@ -14,9 +14,10 @@ function launchGetReq(){
     return;
 
   var doCb = arguments[1]
+  console.log('doCB',doCb);
 
   var URL
-  endpoint = arguments[0]
+  var endpoint = arguments[0]
   if (endpoint == 'search'){
     URL = 'http://localhost:8080/' 
        + endpoint 
@@ -30,22 +31,22 @@ function launchGetReq(){
           URL += '&'
       }
     }
-  }
+  }//end if
   else{
     console.log('bad endpoint: ' + endpoint)
     return
   }
 
   $.ajax({
-       type: 'GET', 
-       url : URL, 
-       success: function(msg){
-                  console.log('launchGetReq success')
-                  doCb(msg)
-                }, 
-       error: function(jgXHR, textStatus, errorThrown){
-                console.log('launchGetReq error')
-                alert('Error: ' + textStatus + '\n' + errorThrown)
-              }
-      })
-}
+   type: 'GET', 
+   url : URL, 
+   success: function(msg){
+              console.log('launchGetReq success')
+              updateSearchResults(msg)
+            }, 
+   error: function(jgXHR, textStatus, errorThrown){
+            console.log('launchGetReq error')
+            alert('Error: ' + textStatus + '\n' + errorThrown)
+          }
+  }) //end ajax
+} //end launch get req
