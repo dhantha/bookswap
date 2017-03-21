@@ -10,7 +10,7 @@ var mysql = require('mysql');
 var db = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
-	password: pw.trim(),
+	password: pw,
 	database: 'bookswap'
 });
 
@@ -157,11 +157,16 @@ Database.prototype.signup = function(username,email,password){
 			else{
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				var str = 'INSERT INTO Users (name,email,password) valuse (\''+username+ '\',\''+email+ '\',PASSWORD(\''+password+'\'));';
 =======
 				var str = 'INSERT INTO Users (name,email,password) valuse (\''+username+ '\',\''+email+ '\',\''+password+'\');';
 >>>>>>> parent of f37e67b... login update
 				con.query(str,function(err,rows,fields){
+=======
+				var str = 'INSERT INTO Users (name,email,password) valuse (\''+username+ '\',\''+email+ '\',\''+password+'\');';
+				db.query(str,function(err,rows,fields){
+>>>>>>> parent of 6d7318c... fix merge
 =======
 				var str = 'INSERT INTO Users (name,email,password) valuse (\''+username+ '\',\''+email+ '\',\''+password+'\');';
 				db.query(str,function(err,rows,fields){

@@ -14,7 +14,10 @@ function launchGetReq(){
     return;
 
   var doCb = arguments[1]
+<<<<<<< HEAD
   console.log('doCB',doCb);
+=======
+>>>>>>> parent of 6d7318c... fix merge
 
   var URL
   var endpoint = arguments[0]
@@ -31,13 +34,14 @@ function launchGetReq(){
           URL += '&'
       }
     }
-  }//end if
+  }
   else{
     console.log('bad endpoint: ' + endpoint)
     return
   }
 
   $.ajax({
+<<<<<<< HEAD
    type: 'GET', 
    url : URL, 
    success: function(msg){
@@ -50,3 +54,17 @@ function launchGetReq(){
           }
   }) //end ajax
 } //end launch get req
+=======
+       type: 'GET', 
+       url : URL, 
+       success: function(msg){
+                  console.log('launchGetReq success')
+                  doCb(msg)
+                }, 
+       error: function(jgXHR, textStatus, errorThrown){
+                console.log('launchGetReq error')
+                alert('Error: ' + textStatus + '\n' + errorThrown)
+              }
+      })
+}
+>>>>>>> parent of 6d7318c... fix merge
