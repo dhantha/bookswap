@@ -15,7 +15,7 @@ a:hover {
 .btn-default:focus {
   color: #333;
   text-shadow: none; /* Prevent inheritance from `body` */
-  background-color: #fff;
+  background-color: #eee;
   border: 1px solid #fff;
 }
 
@@ -30,6 +30,29 @@ a:hover {
  * Base structure
  */
 
+.panel {
+  max-width:700px;
+}
+.table {
+  background:white;
+  color:black;
+  max-width:700px;
+}
+
+.table th {
+  text-align:center;
+  background:#eee;
+ }
+
+ .profile-wrapper {
+  padding-top:70px;
+  text-align:left;
+  max-width:700px;
+  margin:auto;
+ }
+.profile-wrapper h2 {
+  margin-top:50px;
+}
 html,
 body {
   height: 100%;
