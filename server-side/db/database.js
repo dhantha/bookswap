@@ -64,11 +64,11 @@ Database.prototype.getBooks = function(req){
     //
 
     if(rows.length == 0) { 
-      html  = "<h3>Sorry! No results found.</h3>";
+      html  = "<div class='well well-lg'><h3>Sorry! No matching results found.</h3></div>";
       self.emit('search',html);
     }
 
-    html += '<table class="table table-bordered"><tr>';
+    html += '<div class="panel panel-default"><table class="table table-bordered"><tr>';
     html += '<th>Title</th><th>Author</th><th>ISBN</th><th>Owner</th>';
     html += '<book>';
 
@@ -81,13 +81,13 @@ Database.prototype.getBooks = function(req){
       html += '<td>' + result[j].author + '</td>';
       html += '<td>' + result[j].isbn + '</td>';
       html += '<td><a href=\'profile.html?id=' 
-            + result[j].ownerid + '\'>' 
+            + result[j].ownerid + '\'><strong>' 
             + result[j].name 
-            + '</a></td>';
+            + '</strong></a></td>';
 //    html += '<td><a href=\'profile.html\'>' + result[j].name + '</a></td>';
       html += '</tr>';
     }
-    html += '</table>';
+    html += '</table></div>';
     
     self.emit('search',html);
 

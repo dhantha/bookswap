@@ -11,6 +11,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style-idx.css">
 
   <script type='text/javascript' src='aux.js'></script>
   <script type='text/javascript' src='launchReq.js'></script>
@@ -74,9 +75,10 @@
 
     <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-        <li><a id='signupLnk' href="#">Sign Up</a></li>
-        <li><a id='loginLnk'   href="#">Log in</a></li>
-        <li><a id='profileLnk' href='#'>Edit Profile</a></li>
+        <li><a id='signupLnk' href="signup.html">Sign Up</a></li>
+        <li><a id='loginLnk'   href="login.html">Log in</a></li>
+        <li><a id='profileLnk' href='profile.html'>Edit Profile</a></li>
+        <li><a id='searchLnk' href='/'><strong>Search!</strong></a></li>
       </ul>
     </div><!--/.navbar-collapse -->
 
@@ -91,16 +93,17 @@
 
     <div class="inner cover">
     <h1>Drexel Book Swap</h1>
-    <p class="lead">A centralized spot for swappin' text! Reading is free from now on.</p>
+    <p class="lead">A centralized spot for swappin' text! <strong>Reading is free</strong> from now on.</p>
 
     <form class="form" id="searchForm">
-      <input type='text' id='searchInp_title'  placeholder='Title' class="form-control input-lg"/>
-        <input type='text' id='searchInp_author' placeholder='Author' class="form-control input-lg"/>
+      <div class="form-group form-group-lg"><input type='text' id='searchInp_title'  placeholder='Title' class="form-control"/></div>
 
-        <div class="row">
-        <div class="col-md-8"><input type='text' id='searchInp_isbn'   placeholder='ISBN' class="form-control input-lg" /></div>
-        <div class="col-md-4"><button id='searchBtn' class="btn btn-block btn-default btn-lg" type="submit">Search!</button></div>
-        </div><!--.row-->
+      <div class="form-group form-group-lg"><input type='text' id='searchInp_author' placeholder='Author' class="form-control"/></div>
+
+      <div class="row form-group form-group-lg">
+      <div class="col-md-8"><input type='text' id='searchInp_isbn'   placeholder='ISBN' class="form-control" /></div>
+      <div class="col-md-4"><button id='searchBtn' class="btn btn-block btn-default btn-lg" type="submit">Search!</button></div>
+      </div><!--.row-->
 
 
     </form>
