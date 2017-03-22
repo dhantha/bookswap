@@ -117,7 +117,7 @@ Database.prototype.getUser = function(ID){
 Database.prototype.booksWant = function(ID){
   var self = this;
   var userID = ID;
-  var html = '<table><tr>'
+  var html = '<div class="panel panel-default"><table class="table table-bordered"><tr>'
            + '<th>Title</th><th>Author</th><th>ISBN</th><th>Remove?</th>'
            + '</tr>'
   var qry = 'select * from books where ownerid=' + db.escape(userID)
@@ -137,7 +137,7 @@ Database.prototype.booksWant = function(ID){
             + '</td>'
       html += '</tr>'
     }
-    html += '</table>'
+    html += '</table></div>'
     self.emit('books_want',html);
   })
 }
@@ -145,7 +145,7 @@ Database.prototype.booksWant = function(ID){
 Database.prototype.booksHave = function(ID){
   var self = this;
   var userID = ID;
-  var html = '<table><tr>'
+  var html = '<div class="panel panel-default"><table class="table table-bordered"><tr>'
            + '<th>Title</th><th>Author</th><th>ISBN</th><th>Remove?</th>'
            + '</tr>'
   var qry = 'select * from books where ownerid=' + db.escape(userID)
@@ -165,7 +165,7 @@ Database.prototype.booksHave = function(ID){
             + '</td>'
       html += '</tr>'
     }
-    html += '</table>'
+    html += '</table></div>'
     self.emit('books_have',html);
   })
 }

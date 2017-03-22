@@ -98,45 +98,106 @@
       }
     })
   </script>
-</head>
+</header>
 
 <body>
-  <a href='/'> Home Page </a>
-  <a id='logoutLnk' href='#'> Log Out </a>
+<nav class="navbar navbar-inverse navbar-fixed-top" style="margin:0;">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
 
-  <h3> User Profile </h3>
-  <div id='nameDiv'> Name  </div><br>
-  <div id='mailDiv'> Email </div><br>
+    <a class="navbar-brand" href="/">Drexel Book Swap</a>
+    </div><!--.navbar-header-->
 
-  <p> Books I Have <p>
+    <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+        <li><a id='signupLnk' href="signup.html">Sign up</a></li>
+        <li><a id='loginLnk'   href="login.html">Log in</a></li>
+        <li><a id="logoutLnk" href="#">Log out</a></li>
+        <li><a id='profileLnk' href='profile.html'>Edit profile</a></li>
+        <li><a id='searchLnk' href='/'><strong>Search!</strong></a></li>
+      </ul>
+    </div><!--/.navbar-collapse -->
+
+  </div><!--.container-->
+</nav>
+
+<div class="profile-wrapper">
+<div class="container">
+  <h1><span id="nameDiv"></span>'s Profile
+  <small><span id="mailDiv"></span></small></h1>
+
+  <h2>Books I Have</h2>
   <div id='haveDiv'></div>
-  <button id='haveRmBtn'> Delete </button>
+  <button id='haveRmBtn' class="btn btn-default"> Remove selected </button>
 
-  <p> Books I Want <p>
+  <h2>Books I Want</h2>
   <div id='wantDiv'></div>
-  <button id='wantRmBtn'> Delete </button>
+  <button id='wantRmBtn' class="btn btn-default"> Remove selected </button>
+
+  <hr>
+
+  <h1>Update Lists</h1>
+  <div class="row">
 
   <!-- add books you have -->
-  <div>
-    <p> Have a book? </p>
-    <br>
-  <form>
-    Title:  <input id='haveTitleInp'  type='text'><br>
-    Author: <input id='haveAuthorInp' type='text'><br>
-    ISBN:   <input id='haveIsbnInp'   type='text'><br>
-    <button id='haveBtn' type='button'>Submit</button>  
+  <div class="col-md-5">
+  <h2>Have a book?</h2> 
+  <form class="form-horizontal">
+    <div class="form-group">
+    <label for="haveTitleInp" class="col-sm-3 control-label">Title:</label>
+    <div class="col-sm-9"><input type='text' name='haveTitleInp' id='haveTitleInp' class="form-control"/></div>
+    </div><!--title input-->
+
+    <div class="form-group">
+    <label for="haveAuthorInp" class="col-sm-3 control-label">Author:</label>
+    <div class="col-sm-9"><input type='text' name='haveAuthorInp' id='haveAuthorInp' class="form-control"/></div>
+    </div><!--author input-->
+
+    <div class="form-group">
+    <label for="haveIsbnInp" class="col-sm-3 control-label">ISBN:</label>
+    <div class="col-sm-9"><input type='text' name='haveIsbnInp' id='haveIsbnInp' class="form-control"/></div>
+    </div><!--isbn input-->
+
+    <button id='haveBtn' class="btn btn-primary" type='button'>Add to Have List</button>
   </form>
+  </div><!--col6-->
+
+  <div class="col-md-1">
   </div>
 
   <!-- add books you want -->
-  <p> Need a book? </p>
-  <br>
-  <form>
-    Title:  <input id='wantTitleInp'  type='text'><br>
-    Author: <input id='wantAuthorInp' type='text'><br>
-    ISBN:   <input id='wantIsbnInp'   type='text'><br>
-    <button id='wantBtn' type='button'>Submit</button>  
+  <div class="col-md-5">
+  <h2>Need a book?</h2>
+  <form class="form-horizontal">
+    <form class="form-horizontal">
+    <div class="form-group">
+    <label for="wantTitleInp" class="col-sm-3 control-label">Title:</label>
+    <div class="col-sm-9"><input type='text' name='wantTitleInp' id='wantTitleInp' class="form-control"/></div>
+    </div><!--title input-->
+
+    <div class="form-group">
+    <label for="wantAuthorInp" class="col-sm-3 control-label">Author:</label>
+    <div class="col-sm-9"><input type='text' name='wantAuthorInp' id='wantAuthorInp' class="form-control"/></div>
+    </div><!--author input-->
+
+    <div class="form-group">
+    <label for="wantIsbnInp" class="col-sm-3 control-label">ISBN:</label>
+    <div class="col-sm-9"><input type='text' name='wantIsbnInp' id='wantIsbnInp' class="form-control"/></div>
+    </div><!--isbn input-->
+
+    <button id='wantBtn' class="btn btn-primary" type='button'>Add to Want List</button>
   </form>
+  </div><!--col6-->
+  </div><!--row-->
+
+</div>
+</div><!--.profile-wrapper -->
 
   <!-- event handlers -->
   <script language='javascript'>
