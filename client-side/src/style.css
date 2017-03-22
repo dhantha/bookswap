@@ -23,6 +23,7 @@ a:hover {
 .btn-primary:hover,
 .btn-primary:focus {
   text-shadow:none;  
+  background-color:#3571d4;
 }
 
 /*

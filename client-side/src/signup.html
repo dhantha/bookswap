@@ -77,40 +77,35 @@
   <p class="lead">Create an account to keep track of your own book lists!</p>
   <form class="form-horizontal" id="registerForm">
     <div class="form-group form-group-lg">
-    <label for="unameInp" class="col-sm-2 control-label">Name</label>
-    <div class="col-sm-10"><input type='text' name='unameInp' id='unameInp' placeholder='Name' class="form-control"/></div>
+    <label for="unameInp" class="col-sm-2 control-label">Name:</label>
+    <div class="col-sm-10"><input type='text' name='unameInp' id='unameInp' placeholder='Display name' class="form-control"/></div>
     </div><!--name input-->
 
     <div class="form-group form-group-lg">
-    <label for="emailInp" class="col-sm-2 control-label">E-mail</label>
-    <div class="col-sm-10"><input type='text' name='emailInp' id='emailInp' placeholder='E-mail' class="form-control"/></div>
+    <label for="emailInp" class="col-sm-2 control-label">E-mail:</label>
+    <div class="col-sm-10"><input type='text' name='emailInp' id='emailInp' placeholder='E-mail address' class="form-control"/></div>
     </div><!--email input-->
 
     <div class="form-group form-group-lg">
-    <label for="pwordInp" class="col-sm-2 control-label">Password</label>
+    <label for="pwordInp" class="col-sm-2 control-label">Password:</label>
     <div class="col-sm-10"><input type='text' name='pwordInp' id='pwordInp' placeholder='Choose a password' class="form-control"/></div>
     </div><!--password input-->
 
-    <button id='signupBtn' class="btn btn-lg btn-primary"> Sign Up </button>
+    <button id='signupBtn' class="btn btn-lg btn-primary">Sign Up</button>
 
   </form>
 
-    </div><!--.inner cover -->
-
-  </div><!--.cover-container-->
-
+</div><!--.inner cover -->
+</div><!--.cover-container-->
 </div><!--sitewrpaperinnner-->
 </div><!--sitewrapper-->
 
 
-
-
-
-  <script>
-    $('#unameInp' ).keyup(function(ev){ wrapKeyup(ev) })
-    $('#emailInp' ).keyup(function(ev){ wrapKeyup(ev) })
-    $('#pwordInp' ).keyup(function(ev){ wrapKeyup(ev) })
-    $('#signupBtn').click(function(ev){ wrapClick(ev) })
-  </script>
+<script>
+  $('#unameInp' ).keyup(function(ev){ wrapKeyup(ev) })
+  $('#emailInp' ).keyup(function(ev){ wrapKeyup(ev) })
+  $('#pwordInp' ).keyup(function(ev){ wrapKeyup(ev) })
+  $('#signupBtn').click(function(ev){ wrapClick(ev) })
+</script>
 </body>
 </html>
