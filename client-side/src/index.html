@@ -59,55 +59,62 @@
 </header>
 
 <body>
-  <nav class="navbar navbar-inverse navbar-static-top" style="margin:0;">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
+<nav class="navbar navbar-inverse navbar-fixed-top" style="margin:0;">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
 
-      <a class="navbar-brand" href="#">Drexel Book Swap</a>
-      </div><!--.navbar-header-->
+    <a class="navbar-brand" href="#">Drexel Book Swap</a>
+    </div><!--.navbar-header-->
 
-      <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-          <li><a id='signupLnk' href="#">Sign Up</a></li>
-          <li><a id='loginLnk'   href="#">Log in</a></li>
-          <li><a id='profileLnk' href='#'>Edit Profile</a></li>
-        </ul>
-      </div><!--/.navbar-collapse -->
+    <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+        <li><a id='signupLnk' href="#">Sign Up</a></li>
+        <li><a id='loginLnk'   href="#">Log in</a></li>
+        <li><a id='profileLnk' href='#'>Edit Profile</a></li>
+      </ul>
+    </div><!--/.navbar-collapse -->
 
-    </div><!--.container-->
-  </nav>
+  </div><!--.container-->
+</nav>
 
-  <div class="jumbotron">
-    <div class="container">
-      <h1>Drexel Book Swap</h1>
-      <p>Book Swap is what you've wanted for a long time now: a centralized
-      spot for swappin' text!<br>Cancel that online order, burn your library
-      card - reading's free from now on.</p>
 
-      <!-- input box and button -->
-      <form class="form" id="searchForm">
-        <input type='text' id='searchInp_title'  placeholder='Title' class="form-control input-lg"/>
+<div class="site-wrapper">
+<div class="site-wrapper-inner">
 
+  <div class="cover-container">
+
+    <div class="inner cover">
+    <h1>Drexel Book Swap</h1>
+    <p class="lead">A centralized spot for swappin' text! Reading is free from now on.</p>
+
+    <form class="form" id="searchForm">
+      <input type='text' id='searchInp_title'  placeholder='Title' class="form-control input-lg"/>
         <input type='text' id='searchInp_author' placeholder='Author' class="form-control input-lg"/>
 
         <div class="row">
         <div class="col-md-8"><input type='text' id='searchInp_isbn'   placeholder='ISBN' class="form-control input-lg" /></div>
-        <div class="col-md-4"><button id='searchBtn' class="btn btn-block btn-primary btn-lg" type="submit">Search!</button></div>
+        <div class="col-md-4"><button id='searchBtn' class="btn btn-block btn-default btn-lg" type="submit">Search!</button></div>
         </div><!--.row-->
 
-      </form>
 
-      <a href='./adv-search.html'>Advanced Search</a> 
+    </form>
+<!-- <a href='./adv-search.html'>Advanced Search</a>  -->
 
-      <div id="resultsDiv"></div>
-    </div><!--.container-->
-  </div><!--.jumbotron-->
+    <div id="resultsDiv"></div>
+    </div><!--.inner cover -->
+
+  </div><!--.cover-container-->
+
+</div><!--sitewrpaperinnner-->
+</div><!--sitewrapper-->
+
+
 
   <script language='javascript'>
     $('#signupLnk'       ).click(function(ev){ doSignup() })
