@@ -62,7 +62,13 @@ Database.prototype.getBooks = function(req){
   db.query(qry, function(err,rows,fields){
     if(err) throw err;
     //
-    html += '<table><tr>';
+
+    if(rows.length == 0) { 
+      html  = "<h3>Sorry! No results found.</h3>";
+      self.emit('search',html);
+    }
+
+    html += '<table class="table table-bordered"><tr>';
     html += '<th>Title</th><th>Author</th><th>ISBN</th><th>Owner</th>';
     html += '<book>';
 
