@@ -16,13 +16,13 @@
   <script type='text/javascript' src='aux.js'></script>
   <script type='text/javascript' src='launchReq.js'></script>
   <script language='javascript'>
-    launchPostReq('makeNav', loadNav);
+    launchPostReq('getID', auxLoading);
 
     // dumb
     function updateSearchResults(arg){
       $('#resultsDiv').html(arg);
     }
-    
+
     // Parse input fields and launch GET request
     // input:  none
     // output: none

@@ -31,23 +31,11 @@ app.use(function(req,res,next){
     next(); 
 })
 
-app.post('/makeNav', function(req,res){
+app.post('/getID', function(req,res){
   var id = req.session.userid;
-  var html="";
-
-  if(id == undefined || id == 0) {
-    html += "<li><a id='signupLnk' href='signup.html'>Sign up</a></li>";
-    html += "<li><a id='loginLnk' href='login.html'>Log in</a></li>";
-  }
-  else {
-    html += "<li><a id='profileLnk' href='profile.html'>Edit profile</a></li>";
-    html += "<li><a id='logoutLnk' href='#'>Log out</a></li>";
-  }
-
-  html += "<li><a id='searchLnk' href='/'>Search!</a></li>";
-
-  res.send(html);
-})//end loadNav
+  if(id == undefined) res.send(id);
+  else res.send(id.toString());
+})//end getID
 
 
 app.get('/search',function(req,res){

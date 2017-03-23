@@ -174,7 +174,7 @@ Database.prototype.login = function(username,password){
   var self = this
   var qry = 'SELECT id from users WHERE email = ' 
           + db.escape(username)
-          + ' AND password =PASSWORD(' 
+          + ' AND password = PASSWORD(' 
           + db.escape(password) + ');'
   console.log(qry)
   db.query(qry,function(err,rows,fields){
@@ -182,12 +182,13 @@ Database.prototype.login = function(username,password){
       console.log('Error during query processing')
       return 0;
     }
-    else
+    else {
       if (0 < rows.length)
         self.emit('loggedin', rows[0].id)
       else
         self.emit('loggedin', -1)
-  });
+    }
+  });//end query
 }
 
 Database.prototype.signup = function(username,email,password){
