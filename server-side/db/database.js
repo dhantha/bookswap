@@ -172,10 +172,10 @@ Database.prototype.booksHave = function(ID){
 
 Database.prototype.login = function(username,password){
   var self = this
-  var qry = 'SELECT id from users WHERE email = \'' 
-          + username 
-          + '\' AND password = \'' 
-          + password + '\';'
+  var qry = 'SELECT id from users WHERE email = ' 
+          + db.escape(username)
+          + ' AND password =PASSWORD(' 
+          + db.escape(password) + ');'
   console.log(qry)
   db.query(qry,function(err,rows,fields){
     if (err){
@@ -236,6 +236,7 @@ Database.prototype.signup = function(username,email,password){
 }
 
 Database.prototype.addBook = function(userid, title, author, isbn, sts){
+  console.log('sql.addbook called:',title);
   var self = this
   var qry = 'INSERT INTO books (title, author, ownerid, isbn, status) '
           + ' values ('

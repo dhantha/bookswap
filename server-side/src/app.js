@@ -155,6 +155,8 @@ app.post('/booksHave',function(req,res){
 })
 
 app.post('/addBook', function(req, res){
+  console.log('addbook called:',req.body.title);
+
   var ID = req.body.id
   var URL = '/profile.html?id=' + ID
 
@@ -174,6 +176,7 @@ app.post('/addBook', function(req, res){
   }
 
   sql.once('add_book', function(){
+    console.log('got add_book emit');
     res.send(URL)
   })
   sql.addBook(ID, req.body.title, req.body.author, req.body.isbn, sts)

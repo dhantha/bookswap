@@ -6,7 +6,7 @@ create table users (
 	id int not null auto_increment key,
 	name varchar(80),
 	email varchar(80) not null unique,
-	password varchar(256) not null
+	password varchar(255) not null
 );
 
 create table books (
@@ -21,10 +21,10 @@ create table books (
 insert into users
 	(name, email, password)
 	values
-	('Deb','stoddard@drexel.edu','password'),
-	('Ed', 'ecallaghan93@gmail.com', 'password'),
-	('Dhantha', 'dhanthag@gmail.com', 'password'),
-	('Yongchang', 'yc552@drexel.edu', 'password');
+	('Deb','stoddard@drexel.edu', PASSWORD('password')),
+	('Ed', 'ecallaghan93@gmail.com', PASSWORD('password')),
+	('Dhantha', 'dhanthag@gmail.com', PASSWORD('password')),
+	('Yongchang', 'yc552@drexel.edu', PASSWORD('password'));
 
 insert into books
 	(title, author, ownerid, status)
