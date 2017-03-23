@@ -11,6 +11,7 @@ function loadPage(url){
 function auxLoading(id) {
 	console.log('call auxLoading');
 
+	// --- DYNAMIC NAVIGATION LINKS --- //
 	var navHtml="";
 
 	if(id == undefined || id == 0) {
@@ -26,11 +27,16 @@ function auxLoading(id) {
 
 	$("#navLinks").html(navHtml);
 
-
 	$('#logoutLnk' 		 ).click(function(ev){ doLogout() })
 	$('#signupLnk'       ).click(function(ev){ doSignup() })
 	$('#loginLnk'        ).click(function(ev){ doLogin() })
 	$('#profileLnk'      ).click(function(ev){ doProfile() })
+
+
+	// --- PREVENT LIST UPDATES IF YOU ARE NOT THE CORRECT USER --- //
+	var style = $('<style>#haveRmBtn, #wantRmBtn, .table-rmCol tr td:nth-child(4), .table-rmCol tr th:nth-child(4) { display:none; } #update-wrapper { display:none; }</style>');
+	$('html > head').append(style);
+
 }//end auxLoading
 
 

@@ -117,7 +117,7 @@ Database.prototype.getUser = function(ID){
 Database.prototype.booksWant = function(ID){
   var self = this;
   var userID = ID;
-  var html = '<div class="panel panel-default"><table class="table table-bordered"><tr>'
+  var html = '<div class="panel panel-default"><table class="table table-bordered table-rmCol"><tr>'
            + '<th>Title</th><th>Author</th><th>ISBN</th><th>Remove?</th>'
            + '</tr>'
   var qry = 'select * from books where ownerid=' + db.escape(userID)
@@ -131,7 +131,7 @@ Database.prototype.booksWant = function(ID){
       html += '<td>' + rows[j].isbn   + '</td>'
       html += '<td>'
             + '<input id=\'wantRmBox_' + rows[j].bookid + '\' '
-            + 'class=\'wantRmBox\' '
+            + 'class=\'wantRmBox\''
             + 'type=\'checkbox\' '
             + 'value=\'' + rows[j].bookid + '\'>'
             + '</td>'
@@ -145,7 +145,7 @@ Database.prototype.booksWant = function(ID){
 Database.prototype.booksHave = function(ID){
   var self = this;
   var userID = ID;
-  var html = '<div class="panel panel-default"><table class="table table-bordered"><tr>'
+  var html = '<div class="panel panel-default"><table class="table table-bordered table-rmCol"><tr>'
            + '<th>Title</th><th>Author</th><th>ISBN</th><th>Remove?</th>'
            + '</tr>'
   var qry = 'select * from books where ownerid=' + db.escape(userID)
