@@ -37,6 +37,21 @@ app.post('/getID', function(req,res){
   else res.send(id.toString());
 })//end getID
 
+app.post('/getStatus', function(req,res){
+  var sessionID = req.session.userid;
+  var urlID = req.body.id;
+  console.log('sessionID',sessionID,'+ urlID',urlID);
+
+  if(sessionID == undefined || sessionID == 0)
+    { status = "guest"; } //no valid session id
+  else if(sessionID != urlID)
+    { status = "registered"; } //valid session id, not matching profile
+  else
+    { status = "admin"; } //valid session id matches profile's id
+
+  res.send(status);
+})//end getStatus
+
 
 app.get('/search',function(req,res){
   sql.once('search',function(html){

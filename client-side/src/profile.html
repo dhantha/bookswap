@@ -21,6 +21,8 @@
   <script type='text/javascript' src='launchReq.js'></script>
   <script language='javascript'>
     launchPostReq('getID', loadNav);
+    var urlID = decodeURIComponent(window.location.search.substring(1).split('=')[1]);
+    launchPostReq('getStatus', hideUpdatePrivs, new argObj('id', urlID));
 
     // expect object from json
     function updateNameEmail(data){

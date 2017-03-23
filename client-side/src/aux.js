@@ -34,11 +34,15 @@ function loadNav(id) {
 
 }//end loadNav
 
-function hideUpdatePrivs() {
+function hideUpdatePrivs(status) {
 	// prevent list update privileges if you are not the correct user
+	console.log('got status',status);
+
+	if(status != "admin") {
 	var style = $('<style>#haveRmBtn, #wantRmBtn, .table-rmCol tr td:nth-child(4), .table-rmCol tr th:nth-child(4) { display:none; } #update-wrapper { display:none; }</style>');
 	$('html > head').append(style);
-}
+	}
+}//end hideUpdatePrivs
 
 function doSignup(){
 	console.log('call doSignup');
