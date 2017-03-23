@@ -31,6 +31,26 @@ app.use(function(req,res,next){
     next(); 
 })
 
+app.post('/loadNav', function(req,res){
+  var id = req.session.userid;
+  console.log('called loadNav, id:',id);
+  var html="";
+
+  if(id == undefined || id == 0) {
+    html += "<li><a id='signupLnk' href='signup.html'>Sign up</a></li>";
+    html += "<li><a id='loginLnk' href='login.html'>Log in</a></li>";
+  }
+  else {
+    html += "<li><a id='profileLnk' href='profile.html'>Edit profile</a></li>";
+    html += "<li><a id='logoutLnk' href='#'>Log out</a></li>";
+  }
+
+  html += "<li><a id='searchLnk' href='/'>Search!</a></li>";
+
+  console.log(html);
+  res.send(html);
+})//end loadNav
+
 
 app.get('/search',function(req,res){
   sql.once('search',function(html){

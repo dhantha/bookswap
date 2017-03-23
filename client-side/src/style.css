@@ -63,6 +63,7 @@ a:hover {
 }
 a#searchLnk {
   color:#4881E0;
+  font-weight:bold;
 }
 
 html,
