@@ -59,6 +59,8 @@ function launchPostReq(){
   if (arguments.length < 2)
     return;
 
+  console.log('launchpostreq called:',arguments);
+
   var endpoint = arguments[0]
   var doCb = arguments[1]
 

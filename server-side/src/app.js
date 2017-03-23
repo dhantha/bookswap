@@ -31,6 +31,27 @@ app.use(function(req,res,next){
     next(); 
 })
 
+app.post('/getID', function(req,res){
+  var id = req.session.userid;
+  if(id == undefined) res.send(id);
+  else res.send(id.toString());
+})//end getID
+
+app.post('/getStatus', function(req,res){
+  var sessionID = req.session.userid;
+  var urlID = req.body.id;
+  console.log('sessionID',sessionID,'+ urlID',urlID);
+
+  if(sessionID == undefined || sessionID == 0)
+    { status = "guest"; } //no valid session id
+  else if(sessionID != urlID)
+    { status = "registered"; } //valid session id, not matching profile
+  else
+    { status = "admin"; } //valid session id matches profile's id
+
+  res.send(status);
+})//end getStatus
+
 
 app.get('/search',function(req,res){
   sql.once('search',function(html){
@@ -70,7 +91,7 @@ app.post('/login',function(req,res){
   sql.once('loggedin',function(msg){
     if (msg < 0){
       req.session.msg = "Invalid login"
-      return res.redirect('/')
+      return res.send('/login.html')
     }
     else{
       console.log('here: ' + req.body.email)
@@ -94,6 +115,7 @@ app.post('/signup',function(req,res){
       res.send('/login.html')
     }
     else{
+      req.session.userid = msg;
       url = '/profile.html?id=' + msg
       res.send(url)
     }
@@ -155,6 +177,8 @@ app.post('/booksHave',function(req,res){
 })
 
 app.post('/addBook', function(req, res){
+  console.log('addbook called:',req.body.title);
+
   var ID = req.body.id
   var URL = '/profile.html?id=' + ID
 
@@ -174,6 +198,7 @@ app.post('/addBook', function(req, res){
   }
 
   sql.once('add_book', function(){
+    console.log('got add_book emit');
     res.send(URL)
   })
   sql.addBook(ID, req.body.title, req.body.author, req.body.isbn, sts)

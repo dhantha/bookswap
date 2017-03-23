@@ -11,25 +11,16 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style-idx.css">
 
   <script type='text/javascript' src='aux.js'></script>
   <script type='text/javascript' src='launchReq.js'></script>
   <script language='javascript'>
+    launchPostReq('getID', loadNav);
+
     // dumb
     function updateSearchResults(arg){
       $('#resultsDiv').html(arg);
-    }
-
-    function doSignup(){
-      launchPostReq('signuppage', loadPage)
-    }
-
-    function doLogin(){
-      launchPostReq('loginpage', loadPage)
-    }
-
-    function doProfile(){
-      launchPostReq('profile', loadPage)
     }
 
     // Parse input fields and launch GET request
@@ -59,60 +50,61 @@
 </header>
 
 <body>
-  <nav class="navbar navbar-inverse navbar-static-top" style="margin:0;">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
+<nav class="navbar navbar-inverse navbar-fixed-top" style="margin:0;">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
 
-      <a class="navbar-brand" href="#">Drexel Book Swap</a>
-      </div><!--.navbar-header-->
+    <a class="navbar-brand" href="index.html">Drexel Book Swap</a>
+    </div><!--.navbar-header-->
 
-      <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-          <li><a id='signupLnk' href="#">Sign Up</a></li>
-          <li><a id='loginLnk'   href="#">Log in</a></li>
-          <li><a id='profileLnk' href='#'>Edit Profile</a></li>
-        </ul>
-      </div><!--/.navbar-collapse -->
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul id="navLinks" class="nav navbar-nav navbar-right">
+      </ul>
+    </div><!--/.navbar-collapse -->
 
-    </div><!--.container-->
-  </nav>
+  </div><!--.container-->
+</nav>
 
-  <div class="jumbotron">
-    <div class="container">
-      <h1>Drexel Book Swap</h1>
-      <p>Book Swap is what you've wanted for a long time now: a centralized
-      spot for swappin' text!<br>Cancel that online order, burn your library
-      card - reading's free from now on.</p>
+<div class="site-wrapper">
+<div class="site-wrapper-inner">
 
-      <!-- input box and button -->
-      <form class="form" id="searchForm">
-        <input type='text' id='searchInp_title'  placeholder='Title' class="form-control input-lg"/>
+  <div class="cover-container">
 
-        <input type='text' id='searchInp_author' placeholder='Author' class="form-control input-lg"/>
+    <div class="inner cover">
+    <h1>Drexel Book Swap</h1>
+    <p class="lead">A centralized spot for swappin' text! <strong>Reading is free</strong> from now on.</p>
 
-        <div class="row">
-        <div class="col-md-8"><input type='text' id='searchInp_isbn'   placeholder='ISBN' class="form-control input-lg" /></div>
-        <div class="col-md-4"><button id='searchBtn' class="btn btn-block btn-primary btn-lg" type="submit">Search!</button></div>
-        </div><!--.row-->
+    <form class="form" id="searchForm">
+      <div class="form-group form-group-lg"><input type='text' id='searchInp_title'  placeholder='Title' class="form-control"/></div>
 
-      </form>
+      <div class="form-group form-group-lg"><input type='text' id='searchInp_author' placeholder='Author' class="form-control"/></div>
 
-      <a href='./adv-search.html'>Advanced Search</a> 
+      <div class="row form-group form-group-lg">
+      <div class="col-md-8"><input type='text' id='searchInp_isbn'   placeholder='ISBN' class="form-control" /></div>
+      <div class="col-md-4"><button id='searchBtn' class="btn btn-block btn-default btn-lg" type="submit">Search!</button></div>
+      </div><!--.row-->
 
-      <div id="resultsDiv"></div>
-    </div><!--.container-->
-  </div><!--.jumbotron-->
+
+    </form>
+<!-- <a href='./adv-search.html'>Advanced Search</a>  -->
+
+    <div id="resultsDiv"></div>
+    </div><!--.inner cover -->
+
+  </div><!--.cover-container-->
+
+</div><!--sitewrpaperinnner-->
+</div><!--sitewrapper-->
+
+
 
   <script language='javascript'>
-    $('#signupLnk'       ).click(function(ev){ doSignup() })
-    $('#loginLnk'        ).click(function(ev){ doLogin() })
-    $('#profileLnk'      ).click(function(ev){ doProfile() })
     $('#searchInp_title' ).keyup(function(ev){ wrapKeyup(ev) })
     $('#searchInp_author').keyup(function(ev){ wrapKeyup(ev) })
     $('#searchInp_isbn'  ).keyup(function(ev){ wrapKeyup(ev) })

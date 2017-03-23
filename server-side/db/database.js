@@ -62,7 +62,13 @@ Database.prototype.getBooks = function(req){
   db.query(qry, function(err,rows,fields){
     if(err) throw err;
     //
-    html += '<table><tr>';
+
+    if(rows.length == 0) { 
+      html  = "<div class='well well-lg'><h3>Sorry! No matching results found.</h3></div>";
+      self.emit('search',html);
+    }
+
+    html += '<div class="panel panel-default"><table class="table table-bordered"><tr>';
     html += '<th>Title</th><th>Author</th><th>ISBN</th><th>Owner</th>';
     html += '<book>';
 
@@ -75,13 +81,13 @@ Database.prototype.getBooks = function(req){
       html += '<td>' + result[j].author + '</td>';
       html += '<td>' + result[j].isbn + '</td>';
       html += '<td><a href=\'profile.html?id=' 
-            + result[j].ownerid + '\'>' 
+            + result[j].ownerid + '\'><strong>' 
             + result[j].name 
-            + '</a></td>';
+            + '</strong></a></td>';
 //    html += '<td><a href=\'profile.html\'>' + result[j].name + '</a></td>';
       html += '</tr>';
     }
-    html += '</table>';
+    html += '</table></div>';
     
     self.emit('search',html);
 
@@ -111,13 +117,21 @@ Database.prototype.getUser = function(ID){
 Database.prototype.booksWant = function(ID){
   var self = this;
   var userID = ID;
-  var html = '<table><tr>'
-           + '<th>Title</th><th>Author</th><th>ISBN</th><th>Remove?</th>'
-           + '</tr>'
+  var html = "";
   var qry = 'select * from books where ownerid=' + db.escape(userID)
           + 'and status=\'0\''
   console.log(qry)
   db.query(qry, function(err,rows,fields){
+    if(rows.length == 0) { 
+      html  = "<div class='well well-lg'><h3>This list is empty!</h3></div>";
+      self.emit('books_want',html);
+    }
+  
+
+  html = '<div class="panel panel-default"><table class="table table-bordered table-rmCol"><tr>'
+           + '<th>Title</th><th>Author</th><th>ISBN</th><th>Remove?</th>'
+           + '</tr>'
+
     for(var j=0; j < rows.length; j++){
       html += '<tr>'
       html += '<td>' + rows[j].title  + '</td>'
@@ -125,13 +139,13 @@ Database.prototype.booksWant = function(ID){
       html += '<td>' + rows[j].isbn   + '</td>'
       html += '<td>'
             + '<input id=\'wantRmBox_' + rows[j].bookid + '\' '
-            + 'class=\'wantRmBox\' '
+            + 'class=\'wantRmBox\''
             + 'type=\'checkbox\' '
             + 'value=\'' + rows[j].bookid + '\'>'
             + '</td>'
       html += '</tr>'
     }
-    html += '</table>'
+    html += '</table></div>'
     self.emit('books_want',html);
   })
 }
@@ -139,13 +153,21 @@ Database.prototype.booksWant = function(ID){
 Database.prototype.booksHave = function(ID){
   var self = this;
   var userID = ID;
-  var html = '<table><tr>'
-           + '<th>Title</th><th>Author</th><th>ISBN</th><th>Remove?</th>'
-           + '</tr>'
+  var html = "";
   var qry = 'select * from books where ownerid=' + db.escape(userID)
           + 'and status=\'1\''
   console.log(qry)
   db.query(qry, function(err,rows,fields){
+
+   if(rows.length == 0) { 
+      html  = "<div class='well well-lg'><h3>This list is empty!</h3></div>";
+      self.emit('books_have',html);
+    }
+    
+    html = '<div class="panel panel-default"><table class="table table-bordered table-rmCol"><tr>'
+           + '<th>Title</th><th>Author</th><th>ISBN</th><th>Remove?</th>'
+           + '</tr>'
+
     for(var j=0; j < rows.length; j++){
       html += '<tr>'
       html += '<td>' + rows[j].title  + '</td>'
@@ -159,29 +181,30 @@ Database.prototype.booksHave = function(ID){
             + '</td>'
       html += '</tr>'
     }
-    html += '</table>'
+    html += '</table></div>'
     self.emit('books_have',html);
   })
 }
 
 Database.prototype.login = function(username,password){
   var self = this
-  var qry = 'SELECT id from users WHERE email = \'' 
-          + username 
-          + '\' AND password = \'' 
-          + password + '\';'
+  var qry = 'SELECT id from users WHERE email = ' 
+          + db.escape(username)
+          + ' AND password = PASSWORD(' 
+          + db.escape(password) + ');'
   console.log(qry)
   db.query(qry,function(err,rows,fields){
     if (err){
       console.log('Error during query processing')
       return 0;
     }
-    else
+    else {
       if (0 < rows.length)
         self.emit('loggedin', rows[0].id)
       else
         self.emit('loggedin', -1)
-  });
+    }
+  });//end query
 }
 
 Database.prototype.signup = function(username,email,password){
@@ -230,6 +253,7 @@ Database.prototype.signup = function(username,email,password){
 }
 
 Database.prototype.addBook = function(userid, title, author, isbn, sts){
+  console.log('sql.addbook called:',title);
   var self = this
   var qry = 'INSERT INTO books (title, author, ownerid, isbn, status) '
           + ' values ('
