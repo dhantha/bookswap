@@ -115,6 +115,7 @@ app.post('/signup',function(req,res){
       res.send('/login.html')
     }
     else{
+      req.session.userid = msg;
       url = '/profile.html?id=' + msg
       res.send(url)
     }
