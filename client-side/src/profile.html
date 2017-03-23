@@ -20,6 +20,8 @@
   <script type='text/javascript' src='aux.js'></script>
   <script type='text/javascript' src='launchReq.js'></script>
   <script language='javascript'>
+    launchPostReq('makeNav', loadNav);
+
     // expect object from json
     function updateNameEmail(data){
       $('#nameDiv').html(data.name)
@@ -34,11 +36,6 @@
     // expect html table
     function updateBooksWant(html){
       $('#wantDiv').html(html)
-    }
-
-    // tell server to log out
-    function doLogout(){
-      launchPostReq('logout', loadPage)
     }
 
     // trx = 'have', 'want'
@@ -196,10 +193,7 @@
 
   <!-- event handlers -->
   <script language='javascript'>
-    launchPostReq('makeNav', loadNav);
-
     // home page link here
-    $('#logoutLnk'    ).click(function(ev){ doLogout() })
     $('#haveBtn'      ).click(function(ev){ doAddBook('have') })
     $('#wantBtn'      ).click(function(ev){ doAddBook('want') })
     $('#haveTitleInp' ).keyup(function(ev){ wrapKeyup(ev, 'have') })

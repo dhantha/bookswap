@@ -15,7 +15,9 @@
   <script type='text/javascript' src='aux.js'></script>
   <script type='text/javascript' src='launchReq.js'></script>
   <script language='javascript'>
-    function doSignup(){
+    launchPostReq('makeNav', loadNav);
+
+    function doSignupBtn(){
       var uname = $('#unameInp').val()
       var email = $('#emailInp').val()
       var pword = $('#pwordInp').val()
@@ -31,7 +33,7 @@
 
     function wrapClick(ev){
       ev.preventDefault()
-      doSignup()
+      doSignupBtn()
     }
 
     function wrapKeyup(ev){
@@ -98,8 +100,6 @@
 
 
 <script>
-    launchPostReq('makeNav', loadNav);
-
   $('#unameInp' ).keyup(function(ev){ wrapKeyup(ev) })
   $('#emailInp' ).keyup(function(ev){ wrapKeyup(ev) })
   $('#pwordInp' ).keyup(function(ev){ wrapKeyup(ev) })

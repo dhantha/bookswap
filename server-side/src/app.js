@@ -33,7 +33,6 @@ app.use(function(req,res,next){
 
 app.post('/makeNav', function(req,res){
   var id = req.session.userid;
-  console.log('called loadNav, id:',id);
   var html="";
 
   if(id == undefined || id == 0) {
