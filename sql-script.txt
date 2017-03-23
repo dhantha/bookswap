@@ -27,23 +27,26 @@ insert into users
 	('Yongchang', 'yc552@drexel.edu', PASSWORD('password'));
 
 insert into books
-	(title, author, ownerid, status)
+	(title, author, ownerid, isbn, status)
 	values
-	('Portraits of Courage', 'George W. Bush', 1, 0),
-	('Hidden Figures', 'Margot Lee Shetterly', 1, 0),
-	('A Dog\'s Purpose', 'W. Bruce Cameron', 1, 1),
-	('The Underground Railroad', 'Colson Whitehead', 1, 1),
-	('Banana Cream Pie Murder', 'Joanne Fluke', 1, 0),
-	('Banana Cream Pie Murder', 'Joanne Fluke', 2, 1),
-	('Dereliction of Duty', 'H. R. McMaster', 2, 0),
-	('Echoes in Death', 'J.D. Robb', 2, 1),
-	('Lincoln in the Bardo', 'George Saunders', 3, 1),
-	('Hidden Figures', 'Margot Lee Shetterly', 3, 0),
-	('The Underground Railroad', 'Colson Whitehead', 3, 1),
-	('A Dog\'s Purpose', 'W. Bruce Cameron', 3, 0),
-	('Lion', 'Saroo Brierley', 4, 1),
-	('Banana Cream Pie Murder', 'Joanne Fluke', 4, 1),
-	('A Dog\'s Purpose', 'W. Bruce Cameron', 4, 1),
-	('Dereliction of Duty', 'H. R. McMaster', 4, 1),
-	('The Zookeeper\'s Wife', 'Diane Ackerman', 4, 1);
-
+	('Portraits of Courage', 'George W. Bush', 1, 1138218251, 0),
+	('Hidden Figures', 'Margot Lee Shetterly', 1, 9781603094054, 0),
+	('A Dog\'s Purpose', 'W. Bruce Cameron', 1, 827714010046, 1),
+	('A Dog\'s Purpose', 'W. Bruce Cameron', 2, 827714010046, 0),
+	('The Underground Railroad', 'Colson Whitehead', 1, 9781603093682, 1),
+	('Banana Cream Pie Murder', 'Joanne Fluke', 1, 9781603093255, 0),
+	('Banana Cream Pie Murder', 'Joanne Fluke', 2, 9781603093255, 1),
+	('Dereliction of Duty', 'H. R. McMaster', 2, 9781603093668, 0),
+	('Echoes in Death', 'J.D. Robb', 2, 0681203093255, 1),
+	('Lincoln in the Bardo', 'George Saunders', 3, 3800013093255, 1),
+	('Hidden Figures', 'Margot Lee Shetterly', 3, 9781603094054, 0),
+	('The Underground Railroad', 'Colson Whitehead', 3, 9781603093682, 1),
+	('A Dog\'s Purpose', 'W. Bruce Cameron', 3, 827714010046, 0),
+	('Lion', 'Saroo Brierley', 4, 3844203093255, 1),
+	('Lion', 'Saroo Brierley', 3, 3844203093255, 1),
+	('Lion', 'Saroo Brierley', 2, 3844203093255, 1),
+	('Lion', 'Saroo Brierley', 1, 3844203093255, 0),
+	('Banana Cream Pie Murder', 'Joanne Fluke', 4, 9781603093255, 1),
+	('A Dog\'s Purpose', 'W. Bruce Cameron', 4, 827714010046, 1),
+	('Dereliction of Duty', 'H. R. McMaster', 4, 9781603093668, 1),
+	('The Zookeeper\'s Wife', 'Diane Ackerman', 4, 9799103093391, 1);
