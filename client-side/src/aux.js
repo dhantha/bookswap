@@ -8,10 +8,10 @@ function loadPage(url){
   window.location = url
 }
 
-function auxLoading(id) {
-	console.log('call auxLoading');
+function loadNav(id) {
+	console.log('call loadNav');
 
-	// --- DYNAMIC NAVIGATION LINKS --- //
+	// different nav links if you are logged in/out
 	var navHtml="";
 
 	if(id == undefined || id == 0) {
@@ -32,13 +32,13 @@ function auxLoading(id) {
 	$('#loginLnk'        ).click(function(ev){ doLogin() })
 	$('#profileLnk'      ).click(function(ev){ doProfile() })
 
+}//end loadNav
 
-	// --- PREVENT LIST UPDATES IF YOU ARE NOT THE CORRECT USER --- //
+function hideUpdatePrivs() {
+	// prevent list update privileges if you are not the correct user
 	var style = $('<style>#haveRmBtn, #wantRmBtn, .table-rmCol tr td:nth-child(4), .table-rmCol tr th:nth-child(4) { display:none; } #update-wrapper { display:none; }</style>');
 	$('html > head').append(style);
-
-}//end auxLoading
-
+}
 
 function doSignup(){
 	console.log('call doSignup');
