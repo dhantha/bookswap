@@ -91,7 +91,7 @@ app.post('/login',function(req,res){
   sql.once('loggedin',function(msg){
     if (msg < 0){
       req.session.msg = "Invalid login"
-      return res.redirect('/')
+      return res.send('/')
     }
     else{
       console.log('here: ' + req.body.email)
