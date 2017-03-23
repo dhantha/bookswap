@@ -117,13 +117,21 @@ Database.prototype.getUser = function(ID){
 Database.prototype.booksWant = function(ID){
   var self = this;
   var userID = ID;
-  var html = '<div class="panel panel-default"><table class="table table-bordered table-rmCol"><tr>'
-           + '<th>Title</th><th>Author</th><th>ISBN</th><th>Remove?</th>'
-           + '</tr>'
+  var html = "";
   var qry = 'select * from books where ownerid=' + db.escape(userID)
           + 'and status=\'0\''
   console.log(qry)
   db.query(qry, function(err,rows,fields){
+    if(rows.length == 0) { 
+      html  = "<div class='well well-lg'><h3>This list is empty!</h3></div>";
+      self.emit('books_want',html);
+    }
+  
+
+  html = '<div class="panel panel-default"><table class="table table-bordered table-rmCol"><tr>'
+           + '<th>Title</th><th>Author</th><th>ISBN</th><th>Remove?</th>'
+           + '</tr>'
+
     for(var j=0; j < rows.length; j++){
       html += '<tr>'
       html += '<td>' + rows[j].title  + '</td>'
@@ -145,13 +153,21 @@ Database.prototype.booksWant = function(ID){
 Database.prototype.booksHave = function(ID){
   var self = this;
   var userID = ID;
-  var html = '<div class="panel panel-default"><table class="table table-bordered table-rmCol"><tr>'
-           + '<th>Title</th><th>Author</th><th>ISBN</th><th>Remove?</th>'
-           + '</tr>'
+  var html = "";
   var qry = 'select * from books where ownerid=' + db.escape(userID)
           + 'and status=\'1\''
   console.log(qry)
   db.query(qry, function(err,rows,fields){
+
+   if(rows.length == 0) { 
+      html  = "<div class='well well-lg'><h3>This list is empty!</h3></div>";
+      self.emit('books_have',html);
+    }
+    
+    html = '<div class="panel panel-default"><table class="table table-bordered table-rmCol"><tr>'
+           + '<th>Title</th><th>Author</th><th>ISBN</th><th>Remove?</th>'
+           + '</tr>'
+
     for(var j=0; j < rows.length; j++){
       html += '<tr>'
       html += '<td>' + rows[j].title  + '</td>'
