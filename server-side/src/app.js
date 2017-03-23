@@ -31,7 +31,7 @@ app.use(function(req,res,next){
     next(); 
 })
 
-app.post('/loadNav', function(req,res){
+app.post('/makeNav', function(req,res){
   var id = req.session.userid;
   console.log('called loadNav, id:',id);
   var html="";
@@ -47,7 +47,6 @@ app.post('/loadNav', function(req,res){
 
   html += "<li><a id='searchLnk' href='/'>Search!</a></li>";
 
-  console.log(html);
   res.send(html);
 })//end loadNav
 

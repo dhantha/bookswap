@@ -74,12 +74,7 @@
     </div><!--.navbar-header-->
 
     <div id="navbar" class="navbar-collapse collapse">
-        <ul id="navLinks" class="nav navbar-nav navbar-right">
-        <li><a id='signupLnk' href='signup.html'>Sign up</a></li>
-        <li><a id='loginLnk'   href='login.html'>Log in</a></li>
-        <li><a id="logoutLnk" href="#">Log out</a></li>
-        <li><a id='profileLnk' href='profile.html'>Edit profile</a></li>
-        <li><a id='searchLnk' href='/'><strong>Search!</strong></a></li>
+      <ul id="navLinks" class="nav navbar-nav navbar-right">
       </ul>
     </div><!--/.navbar-collapse -->
 
@@ -120,6 +115,8 @@
 
 
   <script language='javascript'>
+    launchPostReq('makeNav', loadNav);
+
     $('#signupLnk'       ).click(function(ev){ doSignup() })
     $('#loginLnk'        ).click(function(ev){ doLogin() })
     $('#profileLnk'      ).click(function(ev){ doProfile() })
