@@ -205,7 +205,7 @@ app.post('/addBook', function(req, res){
 })
 
 app.post('/rmBook', function(req, res){
-  var ID = 3; //req.body.id
+  var ID = req.body.id
   var URL = '/profile.html?id=' + ID
 
   if (req.session.userid != ID){
