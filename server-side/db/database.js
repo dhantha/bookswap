@@ -295,4 +295,63 @@ Database.prototype.rmBooks = function(ID, sts, books){
   })
 }
 
+Database.prototype.haveSearch = function(ID){
+    // people who wants the books you have
+    var self = this;
+    var qry = "select * from books join users on users.id=books.ownerid  where books.status = 0 and title in (select title from books where ownerid=" + db.escape(ID) + " and status=1);"
+    console.log(qry);
+    db.query(qry,function(err,rows,fields){
+        if(err){
+            throw err;
+        }
+        else{
+            html = '<div class="panel panel-default"><table class="table table-bordered table-rmCol"><tr>'
+                    + '<th>Title</th><th>Author</th><th>Name</th><th>Email</th>'
+                    + '</tr>'
+
+            for(var j=0; j < rows.length; j++){
+              html += '<tr>'
+              html += '<td>' + rows[j].title  + '</td>'
+              html += '<td>' + rows[j].author + '</td>'
+              html += '<td>' + rows[j].name   + '</td>'
+              html += '<td>' + rows[j].email  + '</td>'
+              html += '</tr>'
+            }
+            html += '</table></div>'
+            self.emit('auto_have',html);
+            
+        }
+    });
+};
+
+Database.prototype.wantSearch = function(ID){
+    var self = this;
+    console.log(ID);
+    var qry = "select * from books join users on users.id=books.ownerid  where books.status = 1  and title in (select title from books where ownerid=" + db.escape(ID) + " and status=0);"
+    console.log(qry);
+    db.query(qry,function(err,rows,fields){
+        if(err){
+            throw err;
+        }
+        else{
+            html = '<div class="panel panel-default"><table class="table table-bordered table-rmCol"><tr>'
+                    + '<th>Title</th><th>Author</th><th>Name</th><th>Email</th>'
+                    + '</tr>'
+
+            for(var j=0; j < rows.length; j++){
+              html += '<tr>'
+              html += '<td>' + rows[j].title  + '</td>'
+              html += '<td>' + rows[j].author + '</td>'
+              html += '<td>' + rows[j].name   + '</td>'
+              html += '<td>' + rows[j].email  + '</td>' 
+              html += '</tr>'
+            }
+            html += '</table></div>'
+            self.emit('auto_want',html);
+            
+        }
+    });
+
+}
+
 module.exports = Database;

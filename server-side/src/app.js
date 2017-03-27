@@ -205,7 +205,7 @@ app.post('/addBook', function(req, res){
 })
 
 app.post('/rmBook', function(req, res){
-  var ID = req.body.id
+  var ID = 3; //req.body.id
   var URL = '/profile.html?id=' + ID
 
   if (req.session.userid != ID){
@@ -227,6 +227,26 @@ app.post('/rmBook', function(req, res){
     res.send(URL)
   })
   sql.rmBooks(ID, sts, req.body.books)
+})
+
+app.post('/wantSearch',function(req,res){
+    var ID = req.body.id;
+    console.log(ID);
+    sql.once('auto_want',function(html){
+        console.log(html);
+        res.send(html);
+    })
+    console.log("want search");
+    sql.wantSearch(ID);
+});
+
+app.post('/haveSearch',function(req,res){
+    var ID = req.body.id;
+    sql.once('auto_have',function(html){
+        console.log(html);
+        res.send(html);
+    })
+    sql.haveSearch(ID);
 })
 
 app.listen(8080,function(){

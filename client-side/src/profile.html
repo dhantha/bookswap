@@ -39,6 +39,14 @@
     function updateBooksWant(html){
       $('#wantDiv').html(html)
     }
+      
+    function autoSearchWant(html){
+        $("#autoSearchWant").html(html);
+    }
+    
+    function autoSearchHave(html){
+        $("#autoSearchHave").html(html);
+    }
 
     // trx = 'have', 'want'
     function doAddBook(trx){
@@ -94,6 +102,8 @@
         launchPostReq('User',      updateNameEmail, new argObj('id', ID));
         launchPostReq('booksWant', updateBooksWant, new argObj('id', ID));
         launchPostReq('booksHave', updateBooksHave, new argObj('id', ID));
+        launchPostReq('wantSearch', autoSearchWant, new argObj('id', ID));
+        launchPostReq('haveSearch', autoSearchHave, new argObj('id', ID));
       }
     })
   </script>
@@ -191,7 +201,14 @@
   </div><!--row-->
 
   </div><!--div#update-wrapper-->
-
+    
+    <!-- auto search -->
+    <h2>People who has books you want</h2>
+    <div id='autoSearchWant'></div>
+    
+    <h2>People who want books you have</h2>
+    <div id='autoSearchHave'></div>
+    
 </div><!--.container-->
 </div><!--.profile-wrapper -->
 
